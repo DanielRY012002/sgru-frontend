@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AccesoService } from 'src/app/services/login/accesos/acceso.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +8,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+  menus:any;
   opened = false;
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = false;
@@ -20,9 +21,10 @@ export class MenuComponent implements OnInit {
   showSubmenu1: boolean = false;
   isShowing1 = false;
 
-  constructor() { }
+  constructor(private accesoService:AccesoService) { }
 
   ngOnInit(): void {
+    this.listMenus();
   }
 
   mouseenter() {
@@ -45,5 +47,9 @@ export class MenuComponent implements OnInit {
 
   onSelect() {
     this.showSubmenu = !this.showSubSubMenu;
+  }
+
+  listMenus():void{
+    this.accesoService.getMainRoutes().subscribe(data=>this.menus=data["CURSOR_ACCESO"])
   }
 }

@@ -16,6 +16,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const MaterialComponents =
     [MatFormFieldModule,
@@ -34,7 +38,11 @@ const MaterialComponents =
         MatNativeDateModule,
         MatDatepickerModule,
         MatExpansionModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatProgressBarModule,
+        MatSnackBarModule,
+        MatProgressSpinnerModule,
+        MatCheckboxModule
     ];
 
 

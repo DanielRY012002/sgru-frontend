@@ -1,0 +1,81 @@
+<div class="login-page">
+    <mat-card class="mat-elevation-z12">
+        <mat-card-title style="text-align:center">Bienvenido a SGRU</mat-card-title>
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+            <mat-tab label="Iniciar sesión">
+                <mat-card-content>
+                    <form action="">
+                        <mat-form-field>
+                            <input matInput placeholder="Correo electronico" required name="email" ngModel
+                                #email="ngModel">
+                            <mat-error *ngIf="email.invalid">Es necesario un correo electronico</mat-error>
+                            <mat-icon matSuffix>email</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Contraseña" type="password" required minlength="6"
+                                name="password" ngModel #password="ngModel">
+                            <mat-error *ngIf="password.errors && password.errors.required">Es necesario una contraseña
+                            </mat-error>
+                            <mat-error *ngIf="password.errors && password.errors.minlength">
+                                Password must be of length 6
+                            </mat-error>
+                            <mat-icon matSuffix>lock</mat-icon>
+                        </mat-form-field>
+                        <mat-checkbox>Recuerdame</mat-checkbox>
+                        <button mat-raised-button style="background-color:#7b1038; color: white;" class="login-button">
+                            Iniciar sesión
+                        </button>
+
+                        <button mat-raised-button class="login-button">
+                            Iniciar sesión con Google
+                        </button>
+                    </form>
+                </mat-card-content>
+            </mat-tab>
+            <mat-tab label="Registrarse">
+                <mat-card-content>
+                    <form action="">
+                        <mat-form-field>
+                            <input matInput placeholder="Nombres y Apellidos" required name="username" ngModel
+                                #username="ngModel">
+                            <mat-icon matSuffix>perm_identity</mat-icon>
+                            <mat-error *ngIf="username.invalid">
+                                Es necesario nombres y apellidos
+                            </mat-error>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Correo electronico" required name="email" ngModel
+                                #email="ngModel">
+                            <mat-error *ngIf="email.invalid">Es necesario un correo electronico</mat-error>
+                            <mat-icon matSuffix>email</mat-icon>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Contraseña" type="password" required minlength="6"
+                                name="password" ngModel #password="ngModel">
+                            <mat-error *ngIf="password.errors && password.errors.required">
+                                Es necesario una contraseña
+                            </mat-error>
+                            <mat-error *ngIf="password.errors && password.errors.minlength">
+                                Password must be of length 6
+                            </mat-error>
+                            <mat-icon matSuffix>lock</mat-icon>
+
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Repetir contraseña" type="password" required minlength="6"
+                                name="repassword" ngModel #repassword="ngModel">
+                            <mat-error *ngIf="repassword.errors && repassword.errors.required">
+                                Es necesario volver a introducir la contraseña
+                            </mat-error>
+                            <mat-icon matSuffix>lock</mat-icon>
+                        </mat-form-field>
+                        <button mat-raised-button style="background-color:#7b1038; color: white;" class="login-button">
+                            Crear cuenta
+                        </button>
+                    </form>
+                </mat-card-content>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

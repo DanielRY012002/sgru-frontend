@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, Host, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EstadoCivil } from 'src/app/models/evaluador/estadocivil/estado-civil';
 import { Evaluador } from 'src/app/models/evaluador/evaluador';
 import { TipoDocumento } from 'src/app/models/evaluador/tipodocumento/tipo-documento';
+import { TipoEvaluador } from 'src/app/models/evaluador/tipoevaluador/tipo-evaluador';
 import { EstadoCivilService } from 'src/app/services/evaluador/estadocivil/estado-civil.service';
 import { EvaluadorService } from 'src/app/services/evaluador/evaluador.service';
 import { TipoDocumentoService } from 'src/app/services/evaluador/tipodocumento/tipo-documento.service';
 import { TipoEvaluadorService } from 'src/app/services/evaluador/tipoevaluador/tipo-evaluador.service';
+import { FuncionesService } from 'src/app/services/funciones/funciones.service';
 import { ListEvaluadorComponent } from '../list-evaluador/list-evaluador.component';
 
 @Component({
@@ -15,20 +19,23 @@ import { ListEvaluadorComponent } from '../list-evaluador/list-evaluador.compone
 })
 export class AddEvaluadorComponent implements OnInit {
   hola: number;
-  alosca: any;
-  tipoEvaluadores: any;
-  tipoDocumentos: TipoDocumento[];
-  estadosCiviles: any;
-  isSelected: boolean = false;
+  tipoEvaluadores: any[];
+  tipoDocumentos: any[];
+  estadosCiviles: any[];
+  @Input() isRegi: boolean;
+  @Input() isSelected: boolean;
   evaluador: Evaluador = new Evaluador();
   sexo: any = [{ id: "M", nombre: "Masculino" }, { id: "F", nombre: 'Femenino' }];
-  constructor(private listEvaluadorComponent: ListEvaluadorComponent, private tipoEvaluadorService: TipoEvaluadorService,  private estadoCivilService: EstadoCivilService, private tipoDocumentoService: TipoDocumentoService, private router: Router, private evaluadorService: EvaluadorService) {
+  constructor(@Host() private listEvaluadorComponent: ListEvaluadorComponent, private tipoEvaluadorService: TipoEvaluadorService, private estadoCivilService: EstadoCivilService, private tipoDocumentoService: TipoDocumentoService, private router: Router, private evaluadorService: EvaluadorService, private funcion: FuncionesService) {
   }
+
 
   ngOnInit(): void {
     this.listTipoEvaluador();
     this.listEstadoCivil();
     this.listTipoDocumento();
+    this.getEvaluador();
+    console.log(this.isRegi);
   }
   step = 0;
 
@@ -44,12 +51,14 @@ export class AddEvaluadorComponent implements OnInit {
     this.step--;
   }
   Register(): void {
+    this.listEvaluadorComponent.clean();
     this.listEvaluadorComponent.isRegister = false;
   }
   add(): void {
     console.log(this.evaluador);
-    this.evaluadorService.addEvaluador(this.evaluador).subscribe(response => console.log('SUCCESS'))
+    this.evaluadorService.addEvaluador(this.evaluador).subscribe(response => console.log(response))
     this.listEvaluadorComponent.isRegister = false;
+
   }
 
   listTipoEvaluador(): void {
@@ -84,5 +93,16 @@ export class AddEvaluadorComponent implements OnInit {
       }
     }
   }
+
+  update(): void {
+    this.evaluadorService.updateEvaluador(this.evaluador).subscribe(response => console.log(response));
+    this.listEvaluadorComponent.isRegister = false;
+  }
+
+  getEvaluador(): void {
+    this.evaluador = this.listEvaluadorComponent.evaluadorModel;
+  }
+
+
 
 }

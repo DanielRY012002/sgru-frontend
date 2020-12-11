@@ -1,0 +1,15 @@
+<ng-container fxLayout="row wrap">
+  <ng-container fxFlex=25% *ngFor="let e of submains">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{e.ACCESSNAME}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="'http://drive.google.com/uc?export=view&id='+e.ICON"
+        alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <button mat-button [routerLink]="e.URL">IR</button>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+</ng-container>

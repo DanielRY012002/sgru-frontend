@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { strict } from 'assert';
+import { on } from 'process';
+import { Evaluador } from 'src/app/models/evaluador/evaluador';
 import { EvaluadorService } from 'src/app/services/evaluador/evaluador.service';
+import { FuncionesService } from 'src/app/services/funciones/funciones.service';
+import { AddEvaluadorComponent } from '../add-evaluador/add-evaluador.component';
 
 @Component({
   selector: 'app-list-evaluador',
@@ -7,51 +13,71 @@ import { EvaluadorService } from 'src/app/services/evaluador/evaluador.service';
   styleUrls: ['./list-evaluador.component.css']
 })
 export class ListEvaluadorComponent implements OnInit {
-  evaluador:any;
-  evaluadores: any;
-  docentes: any;
-  externos: any;
-  expertos: any;
-  habilidades: any;
+  evaluadorModel: Evaluador = new Evaluador();
+  isRegi:boolean;
+  isSelected: boolean;
+  evaluador: any;
+  evaluadores: Evaluador[];
   isRegister: boolean = false;
-
-  displayedColumns: string[] = ['NOMBRES', 'APELLIDOS', 'DOCUMENTO', 'GRADO_ACADEMICO','EDITAR', 'ELIMINAR'];
   constructor(private evaluadorService: EvaluadorService) { }
 
   ngOnInit(): void {
-    this.listDocentes();
-    this.getEvaluador();
   }
   Register(): void {
-    if (this.isRegister == false) {
-      this.isRegister = true;
-    } else {
-      this.isRegister = false;
-    }
+    this.isRegi=true;
+    this.isSelected=false;
+    this.isRegister = true;
   }
 
   listEvaluadores(): void {
     this.evaluadorService.getEvaluadores().subscribe(data => this.evaluadores = data['CURSOR_DEP']);
   }
-  listDocentes(): void {
-    this.evaluadorService.getDocentes().subscribe(data => this.docentes = data['CURSOR_DEP']);
-  }
-  listExternos(): void {
-    this.evaluadorService.getExpertos().subscribe(data => this.externos = data['CURSOR_DEP']);
-  }
-  listExpertos(): void {
-    this.evaluadorService.getExpertos().subscribe(data => this.expertos = data['CURSOR_DEP']);
-  }
-  listHabilidades(): void {
-    this.evaluadorService.getHabilidades().subscribe(data => this.habilidades = data['CURSOR_DEP']);
 
+  update(n: number): void {
+    this.evaluadorService.getEvaluador(n).subscribe(
+      data => {
+        this.evaluador = data['CURSOR_DEP'];
+        this.evaluadorModel.persona_id = this.evaluador[0].PERSONA_ID;
+        this.evaluadorModel.nombres = this.evaluador[0].NOMBRES;
+        this.evaluadorModel.apellidos = this.evaluador[0].APELLIDOS;
+        this.evaluadorModel.tipo_doc_id = this.evaluador[0].TIPO_DOC_ID;
+        this.evaluadorModel.n_doc = this.evaluador[0].N_DOC;
+        this.evaluadorModel.sexo = this.evaluador[0].SEXO;
+        this.evaluadorModel.correo = this.evaluador[0].CORREO;
+        this.evaluadorModel.estado_civil_id = this.evaluador[0].ESTADO_CIVIL_ID;
+        this.evaluadorModel.fecha_nac = this.fechaType(this.evaluador[0].FECHA_NAC);
+        this.evaluadorModel.telefono = this.evaluador[0].TELEFONO;
+        this.evaluadorModel.tipo_evaluador_id = this.evaluador[0].TIPO_EVALUADOR_ID;
+        this.evaluadorModel.grado_academico = this.evaluador[0].GRADO_ACADEMICO;
+        this.evaluadorModel.correo_trabajo = this.evaluador[0].CORREO_TRABAJO;
+        this.evaluadorModel.estado = this.evaluador[0].ESTADO;
+        console.log(this.evaluadorModel);
+      }
+    );
+    this.isRegi=false;
+    this.isSelected=true;
+    this.isRegister = true;
   }
-  getEvaluador():void{
-    this.evaluadorService.getEvaluador(61).subscribe(data=>{this.evaluador=data['CURSOR_DEP'];console.log (this.evaluador);});
+
+  fechaType(s: String): string {
+    return s.substring(0, 10);
   }
-  delete(n:number):void{
-    console.log(n);
-    this.evaluadorService.deleteEvaluador(n).subscribe(respone=>console.log('delete success'))
+  clean():void{
+    this.evaluadorModel.nombres='';
+    this.evaluadorModel.apellidos='';
+    this.evaluadorModel.tipo_doc_id=null;
+    this.evaluadorModel.n_doc='';
+    this.evaluadorModel.sexo=null;
+    this.evaluadorModel.fecha_nac=null;
+    this.evaluadorModel.estado_civil_id=null;
+    this.evaluadorModel.correo='';
+    this.evaluadorModel.correo_trabajo='';
+    this.evaluadorModel.telefono='';
+    this.evaluadorModel.tipo_evaluador_id=null;
+    this.evaluadorModel.grado_academico='';
+    this.evaluadorModel.estado='';
+    this.evaluadorModel.persona_id=0;
+
   }
 
 }

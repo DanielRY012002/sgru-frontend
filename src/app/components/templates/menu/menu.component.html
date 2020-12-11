@@ -44,10 +44,7 @@
 
             <div class="submenu" [ngStyle]="{'display': showSubmenu1 ? 'block':''}"
                 [ngClass]="{'expanded' : showSubmenu1 }" *ngIf="isShowing1 || isExpanded1">
-                <a mat-list-item href="...">Planificación de evaluación</a>
-                <a mat-list-item href="...">Proyectos integradores</a>
-                <a mat-list-item href="...">Evaluación</a>
-                <a mat-list-item routerLink="/listcards">Informes</a>
+                <a mat-list-item *ngFor="let e of menus" [routerLink]="e.URL" [state]="{id:e.ACCESO_ID}"><mat-icon aria-hidden="false" aria-label="Example home icon">{{e.ICON}}</mat-icon>{{e.ACCESSNAME}}</a>
             </div>
         </mat-nav-list>
     </mat-sidenav>
