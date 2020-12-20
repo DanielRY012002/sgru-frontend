@@ -1,0 +1,11 @@
+<ng-container>
+    <mat-button-toggle-group value="g">
+        <mat-button-toggle value="g" (click)="InformesG=true">Informes Generales</mat-button-toggle>
+        <mat-button-toggle value="i" (click)="InformesG=false">Informes Individuales</mat-button-toggle>
+    </mat-button-toggle-group>
+
+</ng-container>
+
+
+<app-informesg *ngIf="InformesG"></app-informesg>
+<app-informesi *ngIf="!InformesG"></app-informesi>

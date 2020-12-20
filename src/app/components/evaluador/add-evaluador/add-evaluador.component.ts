@@ -94,10 +94,6 @@ export class AddEvaluadorComponent implements OnInit {
     }
   }
 
-  update(): void {
-    this.evaluadorService.updateEvaluador(this.evaluador).subscribe(response => console.log(response));
-    this.listEvaluadorComponent.isRegister = false;
-  }
 
   getEvaluador(): void {
     this.evaluador = this.listEvaluadorComponent.evaluadorModel;

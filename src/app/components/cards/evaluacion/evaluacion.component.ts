@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AccesoService } from 'src/app/services/login/accesos/acceso.service';
 
 @Component({
@@ -9,11 +10,16 @@ import { AccesoService } from 'src/app/services/login/accesos/acceso.service';
 })
 export class EvaluacionComponent implements OnInit {
   submains:any;
-  constructor(private accesoService:AccesoService,private location:Location) { }
+  constructor(private accesoService:AccesoService,private location:Location,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     //console.log(this.location.getState());
-    this.listSubmains(history.state.id);
+    if(history.state.id==undefined){
+      console.log('hola');
+      this.activatedRoute.data.subscribe(data=>this.listSubmains(data.id));
+    } else {
+      this.listSubmains(history.state.id);
+    }
   }
 
   listSubmains(n:number){

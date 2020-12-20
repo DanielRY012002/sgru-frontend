@@ -20,6 +20,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const MaterialComponents =
     [MatFormFieldModule,
@@ -42,7 +43,8 @@ const MaterialComponents =
         MatProgressBarModule,
         MatSnackBarModule,
         MatProgressSpinnerModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatPaginatorModule
     ];
 
 

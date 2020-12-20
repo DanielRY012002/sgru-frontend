@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sysrubricas": {
+      "hosting": {
+        "sgru-frontend-lp2-g2": [
+          "sysrubricas"
+        ]
+      }
+    }
+  }
+}

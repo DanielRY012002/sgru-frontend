@@ -9,26 +9,28 @@ import { Global } from '../global';
 })
 export class EvaluadorService {
   urlEvaluador = Global.url + 'evaluador';
-  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' ,'Authorization':`bearer ${sessionStorage.token}`});
+  
+  
   constructor(private http: HttpClient) { }
 
   getEvaluadores(): Observable<Evaluador[]> {
-    return this.http.get<Evaluador[]>(this.urlEvaluador + '/all');
+    return this.http.get<Evaluador[]>(this.urlEvaluador + '/all',{headers:this.httpHeaders});
   }
   getDocentes(): Observable<Evaluador[]> {
-    return this.http.get<Evaluador[]>(this.urlEvaluador + '/docente/all');
+    return this.http.get<Evaluador[]>(this.urlEvaluador + '/docente/all',{headers:this.httpHeaders});
   }
   getExternos(): Observable<Evaluador[]> {
-    return this.http.get<Evaluador[]>(this.urlEvaluador + '/externo/all');
+    return this.http.get<Evaluador[]>(this.urlEvaluador + '/externo/all',{headers:this.httpHeaders});
   }
   getExpertos(): Observable<Evaluador[]> {
-    return this.http.get<Evaluador[]>(this.urlEvaluador + '/experto/all');
+    return this.http.get<Evaluador[]>(this.urlEvaluador + '/experto/all',{headers:this.httpHeaders});
   }
   getHabilidades(): Observable<Evaluador[]> {
-    return this.http.get<Evaluador[]>(this.urlEvaluador + '/habilidad/all');
+    return this.http.get<Evaluador[]>(this.urlEvaluador + '/habilidad/all',{headers:this.httpHeaders});
   }
   getEvaluador(id: number): Observable<Object> {
-    return this.http.get(`${this.urlEvaluador}/${id}`);
+    return this.http.get(`${this.urlEvaluador}/${id}`,{headers:this.httpHeaders});
   }
   addEvaluador(evaluador: Evaluador): Observable<number> {
     console.log(evaluador);

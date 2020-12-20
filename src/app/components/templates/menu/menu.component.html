@@ -18,10 +18,10 @@
             <div class="submenu" [ngStyle]="{'display': showSubmenu ? 'block':''}"
                 [ngClass]="{'expanded' : showSubmenu }" *ngIf="isShowing || isExpanded">
                 <img src="../../../assets/img/usuario.png" alt="">
-                <p>Bienvenido Dreyna</p>
+                <p>Bienvenido {{usuario.nombres}}</p>
                 <p>EP Sistemas</p>
                 <p>Semestre 2020-II</p>
-                <a mat-list-item href="...">Cerrar sesion</a>
+                <a mat-list-item (click)="cerrarSesion()">Cerrar sesion</a>
                 <mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
                     <span class="full-width" *ngIf="isExpanded || isShowing">Configuración</span>
                     <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}"
@@ -44,9 +44,11 @@
 
             <div class="submenu" [ngStyle]="{'display': showSubmenu1 ? 'block':''}"
                 [ngClass]="{'expanded' : showSubmenu1 }" *ngIf="isShowing1 || isExpanded1">
-                <a mat-list-item *ngFor="let e of menus" [routerLink]="e.URL" [state]="{id:e.ACCESO_ID}"><mat-icon aria-hidden="false" aria-label="Example home icon">{{e.ICON}}</mat-icon>{{e.ACCESSNAME}}</a>
+                <a mat-list-item *ngFor="let e of menus" [routerLink]="e.URL" [state]="{id:e.ACCESO_ID}">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">{{e.ICON}}</mat-icon>{{e.ACCESSNAME}}
+                </a>
             </div>
         </mat-nav-list>
     </mat-sidenav>
-    <router-outlet></router-outlet>
+    <app-dashboard></app-dashboard>
 </mat-sidenav-container>

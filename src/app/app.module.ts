@@ -21,6 +21,12 @@ import { LoginComponent } from './components/templates/login/login.component';
 import { NotfoundComponent } from './components/templates/notfound/notfound.component';
 import { EvaluacionComponent } from './components/cards/evaluacion/evaluacion.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ListinformesComponent } from './components/informes/listinformes/listinformes.component';
+import { InformesgComponent } from './components/informes/informesg/informesg.component';
+import { InformesiComponent } from './components/informes/informesi/informesi.component';
+import { RolService } from './services/login/roles/rol.service';
+import { AuthService } from './services/login/auth.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ListDocentesComponent,
     LoginComponent,
     NotfoundComponent,
-    EvaluacionComponent
+    EvaluacionComponent,
+    ListinformesComponent,
+    InformesgComponent,
+    InformesiComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +59,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [ RolService,AuthService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

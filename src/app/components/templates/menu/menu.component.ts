@@ -1,6 +1,12 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Usuario } from 'src/app/models/login/usuario/usuario';
 import { AccesoService } from 'src/app/services/login/accesos/acceso.service';
+import { AuthService } from 'src/app/services/login/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -8,6 +14,7 @@ import { AccesoService } from 'src/app/services/login/accesos/acceso.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  usuario:Usuario=new Usuario();
   menus:any;
   opened = false;
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -21,10 +28,23 @@ export class MenuComponent implements OnInit {
   showSubmenu1: boolean = false;
   isShowing1 = false;
 
-  constructor(private accesoService:AccesoService) { }
+  constructor(private accesoService:AccesoService,private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
+    let conv;
     this.listMenus();
+    conv=JSON.parse(sessionStorage.usuario);
+    this.usuario.nombres=conv.nombres;
+    console.log(this.usuario.nombres);
+  }
+
+  cerrarSesion():void{
+    this.authService.logout();
+    this.menus=null;
+    Swal.fire(
+      'Cerrado Sesion Con exito','','success'
+    )
+    this.router.navigate(['/login'])
   }
 
   mouseenter() {
@@ -50,6 +70,8 @@ export class MenuComponent implements OnInit {
   }
 
   listMenus():void{
-    this.accesoService.getMainRoutes().subscribe(data=>this.menus=data["CURSOR_ACCESO"])
+    let hola;
+    hola =JSON.parse(sessionStorage.getItem('usuario'));
+    this.menus=hola['accesos']
   }
 }

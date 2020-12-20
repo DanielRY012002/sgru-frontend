@@ -2,13 +2,14 @@ ng-container{
   padding: 5px;
 }
 .example-card {
-  
-    max-width: 300px;
     margin: 5px;
 
   }
   img{
     min-width: 100%;
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 150px;
     object-fit: cover;
   }
   

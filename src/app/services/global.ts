@@ -1,3 +1,3 @@
 export var Global = {
-    url : "http://localhost:8080/api/"
+    url : "http://sysrubricas-env.eba-mmmpi5uh.us-east-1.elasticbeanstalk.com/api/"
 };

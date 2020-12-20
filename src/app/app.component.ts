@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sgru-frontend-lp2-g2';
+
+  autenticado:boolean=false;
 }
