@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
 import Swal from 'sweetalert2';
@@ -11,7 +12,7 @@ import { Global } from '../global';
 export class AuthService {
   private _usuario: Usuario;
   private _token: string;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private tost:ToastrService) { }
   public get usuario(): Usuario {
     if (this._usuario != null) {
       return this._usuario;
@@ -87,7 +88,7 @@ export class AuthService {
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
-    Swal.fire('Cierre de Sesion con exito!','','success');
+    this.tost.success('Cierre de sesion con exito',``,{positionClass:'toast-bottom-right'})
   }
 
   

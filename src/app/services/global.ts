@@ -1,5 +1,7 @@
+ var urlOrigin:string="https://rub-backend.herokuapp.com/";
+
 export var Global = {
-    urlOrigin:"http://localhost:8080",
-    url : `http://localhost:8080/api/`,
-    urlAuth:"http://localhost:8080/oauth/token"
+    url : `${urlOrigin}/api/`,
+    urlBase:`${urlOrigin}`,
+    urlAuth:`${urlOrigin}/oauth/token`
 };

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutes } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './materialmodule/material.module';
@@ -15,6 +15,7 @@ import { AuthService } from './services/login/auth.service';
 import { NotfoundComponent } from './components/templates/notfound/notfound.component';
 import { LoginComponent } from './components/templates/login/login.component';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,16 +26,15 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(AppRoutes,{
-      useHash:true
-    }),
+    AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ToastrModule.forRoot()
     ],
   providers: [RolService,AuthService],
   bootstrap: [AppComponent]

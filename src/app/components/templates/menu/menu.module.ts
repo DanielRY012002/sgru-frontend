@@ -10,8 +10,7 @@ import { ListExternosComponent } from '../../evaluador/list-externos/list-extern
 import { ListDocentesComponent } from '../../evaluador/list-docentes/list-docentes.component';
 import { EvaluacionComponent } from '../../cards/evaluacion/evaluacion.component';
 
-import { RouterModule } from '@angular/router';
-import {MenuRoutes} from './menu-routing.module'
+import { MenuRoutingModule } from './menu-routing.module'
 import { MaterialModule } from 'src/app/materialmodule/material.module';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -45,13 +44,13 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(MenuRoutes),
     MaterialModule,
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    LayoutModule
-    ],
-  providers:[RolService,AuthService]
+    LayoutModule,
+    MenuRoutingModule
+  ],
+  providers: [RolService, AuthService]
 })
-export class MenuModule {}
+export class MenuModule { }

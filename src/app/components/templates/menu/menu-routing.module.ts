@@ -9,7 +9,7 @@ import { ListEvaluadorComponent } from "../../evaluador/list-evaluador/list-eval
 import { ListinformesComponent } from "../../informes/listinformes/listinformes.component";
 import { ListInstrumentoComponent } from "../../instrumento/list-instrumento/list-instrumento.component";
 
-export const MenuRoutes: Routes = [
+export const routes: Routes = [
   { path: 'evaluacion', component: EvaluacionComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: 'ADMIN' ,id:2} },
   { path: 'listinforme', component: ListinformesComponent, data: { role: 'ADMIN' } },
   { path: 'dashboard', component: DashboardComponent, data: { role: 'ADMIN' } },
@@ -17,4 +17,10 @@ export const MenuRoutes: Routes = [
   { path: 'listevaluador', component: ListEvaluadorComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: 'ADMIN' } },
   { path: 'informes', component: ListcardsComponent },
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class MenuRoutingModule{}
 

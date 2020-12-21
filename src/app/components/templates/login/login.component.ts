@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
 import { AuthService } from 'src/app/services/login/auth.service';
 import Swal from 'sweetalert2';
@@ -11,12 +12,12 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
   usuario:Usuario=new Usuario();
-  constructor(private authService:AuthService,private router:Router) { }
+  constructor(private authService:AuthService,private router:Router,private tost:ToastrService) { }
 
   ngOnInit(): void {
     if(this.authService.isAuthenticated()){
-      Swal.fire('Login',`Hola ${this.authService.usuario.username} ya estas autenticado!`,'info');
-      this.router.navigate(['']);
+      this.tost.info('Ya estas autenticado',`${this.authService.usuario.username}`,{positionClass:'toast-bottom-right'})
+      this.router.navigate(['dashboard']);
     }
   }
 
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.authService.guadarToken(response.access_token);
       let usuario = this.authService.usuario;
       this.router.navigate(['/dashboard']);    
-      Swal.fire('Login', `Hola ${usuario.username}, has iniciado sesion con éxito`, 'success');
+      this.tost.success('Inicio de sesion con exito',`${usuario.username}`,{positionClass:'toast-bottom-right'})
     },err =>{
       if(err.status==400){
         Swal.fire('Error Login', 'Username o password incorrectos!', 'error');
