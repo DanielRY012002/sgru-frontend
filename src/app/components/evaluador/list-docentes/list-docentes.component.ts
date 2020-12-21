@@ -17,32 +17,36 @@ export class ListDocentesComponent implements OnInit,AfterViewInit {
   showtable: boolean = false;
   notDataFound: boolean = false;
   displayedColumns: string[] = ['NOMBRES', 'APELLIDOS', 'DOCUMENTO', 'GRADO_ACADEMICO', 'EDITAR', 'ELIMINAR'];
-  dataSource= new MatTableDataSource(this.listDocentes());
+  dataSource=new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private evaluadorService: EvaluadorService, private snackbar: MatSnackBar,private listEvaluador:ListEvaluadorComponent) { }
   ngOnInit(): void {
     this.listDocentes();
-    console.log(this.dataSource);
   }
   ngAfterViewInit() {
+    console.log(this.paginator)
+    this.dataSource.data=this.docentes;
+    console.log(this.dataSource.data)
     this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource);
+
   }
 
-  listDocentes(): any {
+  listDocentes():any {
     this.load = false;
     this.evaluadorService.getDocentes().subscribe(
       data => {
-        this.docentes = data['CURSOR_DEP']
-        if (this.docentes.length === 0) {
+        if (data.length==0) {
           this.load = true;
           this.notDataFound = true;
           this.showtable=false;
+          return undefined;
         }
         else {
-          console.log(this.docentes);
           this.load = true;
+          this.docentes=data['CURSOR_DEP']
           this.showtable=true;
-          return this.docentes;
+          return data['CURSOR_DEP'];
         }
       });
   }

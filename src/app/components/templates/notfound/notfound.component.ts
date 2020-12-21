@@ -15,7 +15,7 @@ export class NotfoundComponent implements OnInit {
   }
 
   accionBack():void{
-    this.route.navigate(['menu'])
+    this.route.navigate([''])
   }
 
   pruebita():void{

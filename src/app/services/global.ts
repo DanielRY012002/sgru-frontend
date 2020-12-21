@@ -1,3 +1,5 @@
 export var Global = {
-    url : "http://sysrubricas-env.eba-mmmpi5uh.us-east-1.elasticbeanstalk.com/api/"
+    urlOrigin:"http://localhost:8080",
+    url : `http://localhost:8080/api/`,
+    urlAuth:"http://localhost:8080/oauth/token"
 };

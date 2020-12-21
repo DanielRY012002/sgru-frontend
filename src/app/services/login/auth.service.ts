@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
+import Swal from 'sweetalert2';
+import { Global } from '../global';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,7 @@ export class AuthService {
     return null;
   }
   login(usuario: Usuario): Observable<any> {
-    const urlEndpoint = 'http://sysrubricas-env.eba-mmmpi5uh.us-east-1.elasticbeanstalk.com/oauth/token';
+    const urlEndpoint = Global.urlAuth;
 
     const credenciales = btoa('sgru' + ':' + 'OnlyShake');
 
@@ -81,10 +83,11 @@ export class AuthService {
     }
     return false;
   }
-  logout() {
+  logout():void{
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
+    Swal.fire('Cierre de Sesion con exito!','','success');
   }
 
   
