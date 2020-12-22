@@ -12,7 +12,7 @@ import { Global } from '../global';
 export class AuthService {
   private _usuario: Usuario;
   private _token: string;
-  constructor(private http: HttpClient,private tost:ToastrService) { }
+  constructor(private http: HttpClient, private tost: ToastrService) { }
   public get usuario(): Usuario {
     if (this._usuario != null) {
       return this._usuario;
@@ -84,12 +84,12 @@ export class AuthService {
     }
     return false;
   }
-  logout():void{
+  logout(): void {
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
-    this.tost.success('Cierre de sesion con exito',``,{positionClass:'toast-bottom-right'})
+    this.tost.success('Cierre de sesion con exito', ``, { positionClass: 'toast-bottom-right' })
   }
 
-  
+
 }

@@ -14,7 +14,6 @@ import { RolService } from './services/login/roles/rol.service';
 import { AuthService } from './services/login/auth.service';
 import { NotfoundComponent } from './components/templates/notfound/notfound.component';
 import { LoginComponent } from './components/templates/login/login.component';
-import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
