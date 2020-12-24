@@ -1,4 +1,4 @@
- var urlOrigin:string="https://rub-backend.herokuapp.com";
+ var urlOrigin:string="http://localhost:8080";
 
 export var Global = {
     url : `${urlOrigin}/api/`,

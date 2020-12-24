@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
-import Swal from 'sweetalert2';
 import { Global } from '../global';
 
 @Injectable({
@@ -88,7 +87,6 @@ export class AuthService {
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
-    this.tost.success('Cierre de sesion con exito', ``, { positionClass: 'toast-bottom-right' })
   }
 
 

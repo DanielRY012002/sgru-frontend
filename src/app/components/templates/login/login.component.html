@@ -1,6 +1,8 @@
 <div class="login-page">
     <mat-card class="mat-elevation-z12">
         <mat-card-title style="text-align:center">Bienvenido a SGRU</mat-card-title>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
         <!-- <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
             <mat-tab label="Iniciar sesión"> -->
                 <mat-card-content>
@@ -22,7 +24,7 @@
                             <mat-icon matSuffix>lock</mat-icon>
                         </mat-form-field>
                         <mat-checkbox>Recuerdame</mat-checkbox>
-                        <button mat-raised-button style="background-color:#7b1038; color: white;" class="login-button" (click)="login()">
+                        <button mat-raised-button style="background-color:#7b1038; color: white;" class="login-button" (click)="login()" [disabled]="loading">
                             Iniciar sesión
                         </button>
                     </form>

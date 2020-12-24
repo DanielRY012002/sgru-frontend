@@ -12,41 +12,34 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./list-docentes.component.css']
 })
 export class ListDocentesComponent implements OnInit,AfterViewInit {
-  docentes: Evaluador[];
   load: boolean;
   showtable: boolean = false;
   notDataFound: boolean = false;
-  displayedColumns: string[] = ['NOMBRES', 'APELLIDOS', 'DOCUMENTO', 'GRADO_ACADEMICO', 'EDITAR', 'ELIMINAR'];
-  dataSource=new MatTableDataSource();
+  datasource:any=new MatTableDataSource();
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = ['NOMBRES', 'APELLIDOS', 'DOCUMENTO', 'GRADO_ACADEMICO', 'EDITAR', 'ELIMINAR'];
   constructor(private evaluadorService: EvaluadorService, private snackbar: MatSnackBar,private listEvaluador:ListEvaluadorComponent) { }
   ngOnInit(): void {
     this.listDocentes();
   }
   ngAfterViewInit() {
-    console.log(this.paginator)
-    this.dataSource.data=this.docentes;
-    console.log(this.dataSource.data)
-    this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource);
-
+    this.datasource.paginator = this.paginator;
   }
 
-  listDocentes():any {
+  listDocentes():void{
     this.load = false;
     this.evaluadorService.getDocentes().subscribe(
       data => {
-        if (data.length==0) {
+        console.log()
+        if (data['CURSOR_DEP'].length==0) {
           this.load = true;
           this.notDataFound = true;
           this.showtable=false;
-          return undefined;
         }
         else {
           this.load = true;
-          this.docentes=data['CURSOR_DEP']
+          this.datasource.data=data['CURSOR_DEP']
           this.showtable=true;
-          return data['CURSOR_DEP'];
         }
       });
   }
@@ -64,4 +57,12 @@ export class ListDocentesComponent implements OnInit,AfterViewInit {
     this.listEvaluador.update(n);
   }
 
+  filtrarDocentes(e:string):void{
+    console.log(e);
+    this.datasource.filter=e.trim().toLowerCase();
+  }
+
 }
+
+
+

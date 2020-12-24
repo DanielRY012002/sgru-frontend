@@ -7,7 +7,7 @@ import { AuthRutasGuard } from './services/login/guards/auth-rutas.guard';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path: '', component: MenuComponent, children: [
+    path: '', component: MenuComponent, canActivate:[AuthRutasGuard],children: [
       { path: '', loadChildren:()=> import('./components/templates/menu/menu.module').then(mod=>mod.MenuModule)  }
     ]
   },
@@ -15,7 +15,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

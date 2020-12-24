@@ -2,6 +2,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
 import { AccesoService } from 'src/app/services/login/accesos/acceso.service';
@@ -35,7 +36,7 @@ export class MenuComponent implements OnInit {
   //route
   public ruta:any;
 
-  constructor(private route:Router,private authService:AuthService){
+  constructor(private route:Router,private authService:AuthService,private tost:ToastrService){
   }
 
   ngOnInit(): void {
@@ -77,6 +78,7 @@ export class MenuComponent implements OnInit {
 
   logOut():void{
     this.authService.logout();
+    this.tost.success('Cierre de sesion con exito', ``, { positionClass: 'toast-bottom-right' })
     this.route.navigate(['/login']);
   }
 }
