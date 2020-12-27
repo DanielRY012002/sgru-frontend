@@ -2,7 +2,7 @@
 	<button mat-icon-button (click)="isExpanded = !isExpanded;isExpanded1 = !isExpanded1;">
 		<mat-icon>menu</mat-icon>
 	</button>
-	<img src="../../../../assets/img/logo-upeu-blanco.png" alt="">
+	<img id="logoMain" [routerLink]="['/dashboard']" src="../../../../assets/img/logo-upeu-blanco.png" alt="elpepe">
 </mat-toolbar>
 
 <mat-sidenav-container class="e-container" autosize>
@@ -11,45 +11,20 @@
 		<mat-nav-list>
 
 			<mat-list-item (click)="showSubmenu = !showSubmenu;" class="parent">
-				<span class="full-width" *ngIf="isExpanded || isShowing">Usuario</span>
-				<mat-icon mat-list-icon>account_circle</mat-icon>
-				<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">
-					expand_more</mat-icon>
+				<span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+				<mat-icon mat-list-icon>home</mat-icon>
 			</mat-list-item>
 
-			<div class="submenu" [ngStyle]="{'display': showSubmenu ? 'block':''}"
-				[ngClass]="{'expanded' : showSubmenu }" *ngIf="isShowing || isExpanded">
-				<img src="../../../../assets/img/usuario.png" alt="">
-				<p>{{usuario.nombres}}</p>
-				<p>EP Sistemas</p>
-				<p>Semestre 2020-II</p>
-				<a mat-list-item (click)="logOut()">Cerrar sesion</a>
-				<mat-list-item (click)="showSubSubMenu = !showSubSubMenu" class="parent">
-					<span class="full-width" *ngIf="isExpanded || isShowing">Configuración</span>
-					<mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}"
-						*ngIf="isExpanded || isShowing">expand_more</mat-icon>
-				</mat-list-item>
-
-				<div class="submenu" [ngStyle]="{'display': showSubSubMenu ? 'block':''}"
-					[ngClass]="{'expanded' : showSubSubMenu}" *ngIf="isShowing || isExpanded">
-					<mat-list-item>Perfil de usuario</mat-list-item>
-					<mat-list-item>Contraseña</mat-list-item>
-				</div>
-			</div>
 		</mat-nav-list>
-		<mat-nav-list *ngFor="let a of accesos">
-			<mat-list-item (click)="showSubmenu1 = !showSubmenu1;" class="parent" [routerLink]='a.URL' [state]="{data:{id:a.ACCESO_ID}}">
+		<mat-nav-list *ngFor="let a of submains">
+			<mat-list-item (click)="showSubmenu1 = !showSubmenu1;" class="parent" [routerLink]='a.URL'>
 				<span class="full-width" *ngIf="isExpanded1 || isShowing1">{{a.ACCESSNAME}}</span>
 				<mat-icon mat-list-icon>{{a.ICON}}</mat-icon>
-				<!-- <mat-icon class="menu-button" [ngClass]= "{'rotated' : showSubmenu1}" *ngIf= "isExpanded1 || isShowing1">expand_more</mat-icon> -->
 			</mat-list-item>
-			<!-- <div  class="submenu"  [ngStyle]= "{'display': showSubmenu1 ? 'block':''}" [ngClass]= "{'expanded' : showSubmenu1 }" *ngIf= "isShowing1 || isExpanded1" >
-				<a mat-list-item href="...">Programa Acádemico</a>
-			</div> -->
 		</mat-nav-list>
 
 	</mat-sidenav>
 	<mat-sidenav-content>
-			<router-outlet></router-outlet>
+		<router-outlet></router-outlet>
 	</mat-sidenav-content>
 </mat-sidenav-container>

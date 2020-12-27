@@ -15,13 +15,17 @@ import { AuthService } from './services/login/auth.service';
 import { NotfoundComponent } from './components/templates/notfound/notfound.component';
 import { LoginComponent } from './components/templates/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from './components/templates/dashboard/dashboard.component';
+import { HomeComponent } from './components/templates/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     NotfoundComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

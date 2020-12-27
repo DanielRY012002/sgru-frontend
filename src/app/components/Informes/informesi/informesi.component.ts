@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Informe } from 'src/app/models/informes/informe';
 import { InformeService } from 'src/app/services/informes/informe.service';
 
 @Component({
@@ -11,6 +12,9 @@ export class InformesiComponent implements OnInit {
   uac:any[];
   uaf:any[];
   uapa:any[];
+  s:any[];
+  c:any[];
+  informe:Informe= new Informe();
   constructor(private informeService:InformeService) { }
   displayedColumns:string[]=['CE','NOMBRES','APELLIDOS','LINK'];
 
@@ -18,8 +22,11 @@ export class InformesiComponent implements OnInit {
     this.listInformesUAC();
   }
 
-  listInformeIndividuales(id,id2,id3):void{
-    this.informeService.getInformesIndividuales(id,id2,id3).subscribe(data=>this.InformesIndividuales=data['CURSOR_INFORME']);
+  listInformeIndividuales():void{
+    this.informeService.getInformesIndividuales(this.informe.ua_id,this.informe.semestre_id,this.informe.utils_id).subscribe(data=>{
+      this.InformesIndividuales=data['CURSOR_INFORME'];
+      console.log(this.InformesIndividuales)
+    });
   }
   listInformesUAC():void{
     this.informeService.getInformesUAC().subscribe(data=>this.uac=data['CURSOR_UA']);
@@ -31,4 +38,12 @@ export class InformesiComponent implements OnInit {
   listInformesUAPA(n:number):void{
     this.informeService.getInformesUAPA(n).subscribe(data=>this.uapa=data['CURSOR_UA']);
   }
+  listInformesS(n:number):void{
+    this.informeService.getInformesS(n).subscribe(data=>this.s=data['CURSOR_S']);
+  }
+  listInformesC(n:number):void{
+    this.informeService.getInformeC(n).subscribe(data=>this.c=data['CURSOR_C']);
+  }
+
+  
 }

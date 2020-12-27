@@ -1,7 +1,7 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
@@ -21,30 +21,25 @@ export class MenuComponent implements OnInit {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
-
-
+  submains:any[];
   
   isExpanded1 = false;
   showSubmenu1: boolean = false;
   isShowing1 = false;
   showSubSubMenu1:boolean = false;
 
-  accesos:any;
-
-  usuario:Usuario=new Usuario();
-
-  //route
-  public ruta:any;
-
-  constructor(private route:Router,private authService:AuthService,private tost:ToastrService){
+  constructor(private route:Router,private authService:AuthService,private tost:ToastrService,private accesoService:AccesoService,private activatedRoute:ActivatedRoute){
   }
 
   ngOnInit(): void {
-    this.accesos=JSON.parse(sessionStorage.usuario);
-    this.usuario.nombres=this.accesos.nombres
-    this.accesos=this.accesos.accesos;
-    console.log(this.accesos);
-    console.log(this.usuario.nombres)
+    
+    if(history.state.data==undefined||history.state.data==null){
+      console.log('hola')
+      this.route.navigate(['dashboard']);
+    }
+    else{
+      this.accesoService.getSubMainRoutes(history.state.data.id).subscribe(data=>this.submains=data['CURSOR_ACCESO']);
+    }
   }
   mouseenter() {
     if (!this.isExpanded) {

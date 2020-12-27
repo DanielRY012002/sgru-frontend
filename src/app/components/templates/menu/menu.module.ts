@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListcardsComponent } from '../../cards/listcards/listcards.component';
 import { ListEvaluadorComponent } from '../../evaluador/list-evaluador/list-evaluador.component';
 import { AddEvaluadorComponent } from '../../evaluador/add-evaluador/add-evaluador.component';
 import { ListInstrumentoComponent } from '../../instrumento/list-instrumento/list-instrumento.component';
@@ -8,8 +7,6 @@ import { ListHabilidadesComponent } from '../../evaluador/list-habilidades/list-
 import { ListExpertosComponent } from '../../evaluador/list-expertos/list-expertos.component';
 import { ListExternosComponent } from '../../evaluador/list-externos/list-externos.component';
 import { ListDocentesComponent } from '../../evaluador/list-docentes/list-docentes.component';
-import { EvaluacionComponent } from '../../cards/evaluacion/evaluacion.component';
-
 import { MenuRoutingModule } from './menu-routing.module'
 import { MaterialModule } from 'src/app/materialmodule/material.module';
 import { FormsModule } from '@angular/forms';
@@ -21,14 +18,12 @@ import { RolService } from 'src/app/services/login/roles/rol.service';
 import { ListinformesComponent } from '../../informes/listinformes/listinformes.component';
 import { InformesiComponent } from '../../informes/informesi/informesi.component';
 import { InformesgComponent } from '../../informes/informesg/informesg.component';
-
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 
 
 @NgModule({
   declarations: [
-    ListcardsComponent,
     ListEvaluadorComponent,
     AddEvaluadorComponent,
     ListInstrumentoComponent,
@@ -36,7 +31,6 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
     ListExpertosComponent,
     ListExternosComponent,
     ListDocentesComponent,
-    EvaluacionComponent,
     ListinformesComponent,
     DashboardComponent,
     InformesiComponent,

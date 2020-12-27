@@ -55,3 +55,6 @@
 .wrapper {
     padding-left: 300px;
 }
+#logoMain:hover{
+  opacity: 0.5;
+}

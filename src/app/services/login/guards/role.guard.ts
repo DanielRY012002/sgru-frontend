@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth.service';
@@ -8,21 +9,18 @@ import { AuthService } from '../auth.service';
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private tost: ToastrService) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this.authService.isAuthenticated()) {
-      this.authService.logout();
-      this.router.navigate(['/login']);
-      return false;
-    }
     let role = next.data['role'] as string;
-    if (this.authService.hasRole(role)) {
-      return true;
+    for (let r of role) {
+      if (this.authService.hasRole(r)) {
+        return true;
+      }
     }
-    Swal.fire('Acceso denegado', `Hola ${this.authService.usuario.username} no tienes acceso a este recurso`, 'warning')
-    this.router.navigate(['/listar']);
+    this.tost.error('No tienes acceso a este recurso', `Error de acceso`,{ positionClass: 'toast-bottom-right'});
+    this.router.navigate(['']);
     return false;
   }
 

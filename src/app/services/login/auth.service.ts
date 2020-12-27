@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/login/usuario/usuario';
@@ -11,7 +12,7 @@ import { Global } from '../global';
 export class AuthService {
   private _usuario: Usuario;
   private _token: string;
-  constructor(private http: HttpClient, private tost: ToastrService) { }
+  constructor(private http: HttpClient, private tost: ToastrService,private route:Router) { }
   public get usuario(): Usuario {
     if (this._usuario != null) {
       return this._usuario;
@@ -53,6 +54,8 @@ export class AuthService {
     this._usuario.persona_id = payload.iduser;
     this._usuario.username = payload.user;
     this._usuario.nombres = payload.nombre;
+    this._usuario.apellidos = payload.apellidos;
+
     this._usuario.roles = payload.authorities;
     this._usuario.accesos = payload.accesos;
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
@@ -87,6 +90,7 @@ export class AuthService {
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
+    this.route.navigate(['login']);
   }
 
 
