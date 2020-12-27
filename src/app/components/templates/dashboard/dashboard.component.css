@@ -1,0 +1,76 @@
+
+.content{
+     padding: 15px; 
+}
+.content mat-card{
+    text-align: center;
+    background: rgba(0, 0, 0, 0.651);
+}
+a{
+   outline: none;
+   text-decoration: none;
+}
+
+
+mat-sidenav{
+    background-color: #6c1a3f ;
+    width: 20rem;
+    text-align: center;
+}
+
+mat-sidenav-content {
+   
+          /* The image used */
+  background-image: url("../../../../assets/img/upeu2.jpg");
+
+
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+mat-sidenav-container{
+    height: 100vh;
+}
+.card-icon{
+    color: #f5f4f4;
+    font-size: 4rem;
+    position: absolute;
+    top: 35%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding: 20px;
+    text-align: center;
+    
+}
+.card-icon-text{
+    color: #f5f4f4;
+    font-size: large;
+    text-transform: uppercase;
+    margin-top: 10rem;
+}
+
+.content mat-card:hover {
+   text-align: center;
+   opacity: 0.5;
+}
+
+.content mat-card:hover #bolita {
+   text-align: center;
+   background: #fdb827;
+}
+
+#bolita{
+   border-radius: 50%;
+   background-color: #9c9c9c;
+   width: 1rem;
+   height: 1rem;
+   margin: 0 auto;
+   box-shadow: 2px 2px 2px black;
+}

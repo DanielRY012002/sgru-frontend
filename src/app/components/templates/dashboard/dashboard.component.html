@@ -1,0 +1,42 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" position="end">
+        <div class="datos-imagen" style="text-align: center;">
+            <img src="../../../../assets/img/logo-upeu-blanco-italic.png" alt="logo yupeu"
+                style="width: 70%; height: 70%;">
+        </div>
+        <div class="datos" style="display: flex; flex-direction: column; margin: 20rem 0 0 0;">
+            <img style="align-self: center;"
+                src="https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg" width="20%"
+                height="20%" style="border-radius: 50%;object-fit: cover;align-self: center;border: 1px black solid;" alt="user">
+            <h2 style="color: white; width: 100%; align-self: center;">{{nombres}} {{apellidos}}</h2>
+            <p style="align-self: center;">UPEU SEDE</p>
+            <button mat-raised-button color="accent" style="align-self: center;" (click)="serrarcecion()">CERRAR SESION</button>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content style="display: flex; flex-flow: column;">
+        <button (click)="sidenav.toggle()" style="background: none; border: 0; align-self: flex-end; cursor: pointer;">
+            <mat-icon style="color: #6c1a3f; ">arrow_forward_ios</mat-icon>
+        </button>
+
+        <div class="content">
+            <div fxLayout="row wrap" fxLayoutGap="15px grid">
+                <div fxFlex.lg="33%" fxFlex.md="50%" fxFlex.sm="50%" fxFlex.xs="100%" *ngFor="let a of accesos">
+                    <mat-card class="example-card" style="text-align: center;">
+                        <a [routerLink]="[a.url]" [state]="{data:{id:a.acceso_id}}">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-icon class="card-icon">{{a.icon}}</mat-icon>
+                                <p class="card-icon-text">{{a.accessname}}</p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <div id="bolita"></div>
+                            </mat-card-actions>
+                        </a>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
