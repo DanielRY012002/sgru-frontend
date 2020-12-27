@@ -1,0 +1,185 @@
+
+<div class="card" >
+    <div class="card-content" >
+  
+      <form #update="ngForm" (ngSubmit)="updateAlternativa(update)">
+      <a style="cursor: pointer;" class="grey-text text-darken-4" (click)="enableForm(alternativa.alternativa_id)">
+            <mat-icon>create</mat-icon>
+          </a>
+          <div class="row">
+  
+  
+  
+            <div class="col l10 input-field">
+              <textarea name="nombre" class="materialize-textarea" placeholder="Alternativa"
+              [ngClass]="alternativa.alternativa_id == alternativa.alternativa_id && statussClass? 'input-change-true':'input-change'" 
+              name="nombre"
+               [(ngModel)] = "alternativa.nombre" > </textarea>
+            </div>
+  
+            <div class="input-field col l2">
+              <mat-checkbox
+              [checked] = "alternativa.correcta_estado == 'Y'" (change) = "onChangeChekcked($event)"
+              [ngClass]="alternativa.alternativa_id == alternativa.alternativa_id && statussClass? 'input-change-true':'input-change'">
+                {{ alternativa.correcta_estado }}
+             </mat-checkbox>  
+            </div>
+  
+          </div>
+  
+          <div class="row valign-wrapper">
+  
+  
+            <div class="col l1">
+              <a class="red-text text-darken-3" style="cursor: pointer;" (click)="deleteAlternativa()">
+                <mat-icon>delete</mat-icon>
+                <i class="mdi mdi-delete small remove_icon"></i>
+              </a>
+            </div>
+  
+  
+            <div class="col l3 right">
+              <button  class="btn amber darken-1" type="submit" *ngIf="statussClass">Enviar</button>
+            </div>
+  
+  
+          </div>
+        </form>
+  
+  </div >
+  
+  
+  
+  
+      <!--a style="cursor: pointer;" class="grey-text text-darken-4">
+            <mat-icon>create</mat-icon>
+          </a>
+          <div class="row">
+  
+  
+  
+            <div class="col l10 input-field">
+              <textarea name="nombre" class="materialize-textarea" placeholder="Your Question" [(ngModel)] = "alternativa.nombre"> </textarea>
+            </div>
+  
+            <div class="input-field col l2">
+              <mat-checkbox [checked]="alternativa.correcta_estado == 'Y'" 
+              (change) = "valueChange(alternativas,alternativa,$event)">
+                {{ alternativa.correcta_estado }}
+             </mat-checkbox>  
+            </div>
+  
+          </div>
+  
+          <div class="row valign-wrapper">
+  
+  
+            <div class="col m1">
+              <a href="#" class="grey-text" >
+                <mat-icon>delete</mat-icon>
+                <i class="mdi mdi-delete small remove_icon"></i>
+              </a>
+            </div>
+  
+  
+            <div class="col m3 right">
+  
+              <button  class="btn blue lighten-2" type="submit">Enviar</button>
+            </div-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+    {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+  </button>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step label="la concha de tu hermana">
+  
+      <form #sasaForm="ngForm" (ngSubmit) ="onSubmit(sasaForm)">
+        <input matInput type="text" name="nombre" [ngModel]> 
+      
+        <mat-checkbox class="example-margin" ngModel name="correcta_estado">Checked</mat-checkbox>
+      
+      
+        <button type="submit">jajajaja</button>
+     
+      <mat-list role="list" *ngFor="let alternativa of alternativas">
+      
+      
+        <mat-list-item role="listitem">{{alternativa.nombre}}</mat-list-item>
+      
+        <mat-list-item role="listitem" >
+          <mat-checkbox [checked]="alternativa.correcta_estado == 'Y'" 
+        (change) = "valueChange(alternativas,alternativa,$event)">
+             {{ alternativa.correcta_estado }}
+        </mat-checkbox>   
+          </mat-list-item>
+      </mat-list>
+      
+      
+  
+  
+  
+  
+  
+  
+  
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

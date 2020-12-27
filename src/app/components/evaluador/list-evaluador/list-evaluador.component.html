@@ -1,0 +1,26 @@
+<button style="margin: 5px;" *ngIf="!isRegister" mat-fab color="primary" aria-label="Example icon button with a home icon" (click)="Register()">
+    <mat-icon>add</mat-icon>
+</button>
+<mat-card *ngIf="isRegister">
+    <app-add-evaluador [isRegi]="isRegi" [isSelected]="isSelected"></app-add-evaluador>
+</mat-card>
+
+<mat-card>
+
+    <mat-tab-group backgroundColor="primary" color="accent" mat-align-tabs="center">
+        <mat-tab label="DOCENTES">
+            <app-list-docentes></app-list-docentes>
+        </mat-tab>
+        
+        <mat-tab label="EVALUADORES EXTERNOS">
+            <app-list-externos></app-list-externos>
+        </mat-tab>
+        <mat-tab label="EXPERTOS EXTERNOS">
+            <app-list-expertos></app-list-expertos>
+        </mat-tab>
+        <mat-tab label="EVALUADORES HABILIDADES BLANDAS">
+            <app-list-habilidades></app-list-habilidades>
+        </mat-tab>
+    </mat-tab-group>
+
+</mat-card>

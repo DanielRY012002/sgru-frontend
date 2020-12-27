@@ -1,0 +1,30 @@
+<mat-toolbar class="toolbar" color="primary">
+	<button mat-icon-button (click)="isExpanded = !isExpanded;isExpanded1 = !isExpanded1;">
+		<mat-icon>menu</mat-icon>
+	</button>
+	<img id="logoMain" [routerLink]="['/dashboard']" src="../../../../assets/img/logo-upeu-blanco.png" alt="elpepe">
+</mat-toolbar>
+
+<mat-sidenav-container class="e-container" autosize>
+	<mat-sidenav #sidenav class="e-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+		(mouseleave)="mouseleave()">
+		<mat-nav-list>
+
+			<mat-list-item (click)="showSubmenu = !showSubmenu;" class="parent">
+				<span class="full-width" *ngIf="isExpanded || isShowing">Home</span>
+				<mat-icon mat-list-icon>home</mat-icon>
+			</mat-list-item>
+
+		</mat-nav-list>
+		<mat-nav-list *ngFor="let a of submains">
+			<mat-list-item (click)="showSubmenu1 = !showSubmenu1;" class="parent" [routerLink]='a.URL'>
+				<span class="full-width" *ngIf="isExpanded1 || isShowing1">{{a.ACCESSNAME}}</span>
+				<mat-icon mat-list-icon>{{a.ICON}}</mat-icon>
+			</mat-list-item>
+		</mat-nav-list>
+
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>

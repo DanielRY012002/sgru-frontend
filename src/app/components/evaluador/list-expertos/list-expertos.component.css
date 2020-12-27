@@ -1,0 +1,10 @@
+table{
+    width: 100%;
+}
+mat-progress-bar{
+    margin-top: 5px;
+}
+mat-spinner{
+    margin: auto ;
+    margin-top: 15px;
+}

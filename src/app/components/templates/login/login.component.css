@@ -1,0 +1,75 @@
+/* .login-page {
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color:#7b1038;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+  } */
+  
+  mat-card {
+    width: 450px;
+    padding: 40px;
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    background: #f1f1f1;
+    
+  }
+  mat-form-field, mat-checkbox {
+    width: 80%;
+    display: block;
+    margin: auto;
+  }
+  mat-card-content {
+    margin-top: 20px;
+  }
+  
+  .login-button {
+    margin-top: 20px;
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+  }
+
+
+.box{
+  text-align: center;
+  font-size: large;
+}
+.box h1{
+    color: #0f0f0f;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+  
+.full-width {
+    width: 100%;
+}
+.boton{
+    background-color: #7b1038;
+    color: white;
+    width: 30%;
+}
+
+
+.bg-image {
+  background-image: url(../../../../assets/img/upeu.jpg);
+
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} 

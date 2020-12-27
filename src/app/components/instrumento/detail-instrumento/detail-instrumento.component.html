@@ -1,0 +1,155 @@
+<div class="container">
+
+<mat-list>
+    <mat-card class="example-card">
+  
+  
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"><mat-icon>list_alt</mat-icon></div>
+        <mat-card-title> 
+          <h1 *ngIf="instrumento"> {{instrumento.titulo}} </h1> 
+            
+          
+        </mat-card-title>
+      </mat-card-header>
+     
+      <mat-card-content>
+       
+        <p *ngIf="instrumento" class="left-align">
+          {{instrumento.descripcion}}
+        </p>
+      </mat-card-content>
+  
+    </mat-card>
+  
+  
+  
+  
+  
+    <mat-divider></mat-divider>
+    <mat-list-item>
+     
+  
+      
+  
+    </mat-list-item>
+  
+  
+  
+  
+  
+  
+  
+  
+    <mat-divider></mat-divider>
+    <div>
+      <app-pregunta-instrumento *ngFor="let pregunta of preguntas"  (deleteClicked)="deletePregunta($event)"   (editClicked)="uploadAlternativa($event);openDialog()"  [pregunta] = "pregunta"></app-pregunta-instrumento>
+  
+  
+    </div>
+    <mat-divider></mat-divider>
+  
+    
+  
+  </mat-list>
+  
+  
+  
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-lightred red darken-4 pulse" (click)="openDialog()">
+      <mat-icon style="padding-top: 15px;">add</mat-icon>
+    </a>
+  </div>
+  
+  
+  <ng-template #PreguntaDialog >
+  
+    
+  
+  <mat-dialog-content>
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+  
+        <form [formGroup]="firstFormGroup" #preguntaForm="ngForm" (ngSubmit)="onSend(preguntaForm)">
+          <ng-template matStepLabel>Tu pregunta</ng-template>
+          <mat-form-field style="width: 300px;">
+            <mat-label>Pregunta</mat-label>
+            <input matInput formControlName="nombre" placeholder="Pregunta" [(ngModel)]="pregunta.nombre" required>
+            <mat-error *ngIf="isValidField('nombre',preguntaForm)">{{getErrorMessage("nombre")}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" style="width: 100px;">
+  
+  
+            <mat-label>Peso</mat-label>
+            <input  matInput type="text" formControlName="peso" placeholder="peso"  [(ngModel)]="pregunta.peso" required>  
+            <mat-error *ngIf="isValidField('peso',preguntaForm)">{{getErrorMessage("peso")}}</mat-error>
+          </mat-form-field>
+          
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+  
+        
+      </mat-step>
+      <mat-step>
+        <form [formGroup]="secondFormGroup" #alternativaForm="ngForm" (ngSubmit) ="onSubmitAlternativa(secondFormGroup,alternativaForm)">
+          <ng-template matStepLabel>Alternativas</ng-template>
+  
+          <mat-form-field appearance="outline" style="width: 280px;">
+            <mat-label>Alternativa</mat-label>
+            <input matInput type="text" formControlName="nombre"  placeholder="alternativa" > 
+            <mat-error *ngIf="isValidField2('nombre',alternativaForm)"> {{messageError}} </mat-error>
+          </mat-form-field>
+  
+          <mat-checkbox class="example-margin" formControlName="correcta_estado">Pregunta correcta</mat-checkbox>
+          
+          <button type="submit" class="btn  amber darken-2" style="margin: 0 0 10px 10px;">Crear</button>
+        </form>
+  
+        <app-alternativa-instrumento *ngFor="let alt of alternativas" (deleteClicked)="deleteAlternativa($event)" [alternativa] = "alt"></app-alternativa-instrumento>
+  
+          <div>
+            <button mat-button matStepperPrevious>volver</button>
+            <button mat-button matStepperNext [disabled]="alternativas.length == 0">Next</button>
+          </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Hecho</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>volver</button>
+          <button mat-button (click)="closeAll(firstFormGroup,secondFormGroup)">Finalizar</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  
+  
+  </mat-dialog-content>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ng-template>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+</div>

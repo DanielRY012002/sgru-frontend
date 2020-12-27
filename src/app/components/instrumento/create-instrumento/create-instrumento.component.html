@@ -1,0 +1,219 @@
+<div class="container">
+
+
+
+
+
+<div class="row">
+  
+    <div class="col m8 offset-m2 s12">
+      <h2 class="red-text text-darken-4">{{tittle}}</h2>
+
+      <mat-form-field appearance="fill">
+
+        <mat-label>Semestre</mat-label>
+        <mat-select [(value)]= "instrumento.semestre_id" (selectionChange)= "onChangeSemestre($event.value)">
+          <mat-option *ngFor= "let semestre of semestres" [value]= "semestre.semestre_id">
+            {{semestre.nombre}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance = "fill" class="linea">
+        <mat-label>Lineas</mat-label>
+        <mat-select [(value)]= "selectedL" (selectionChange) = "onChangeLinea($event.value)" >
+          <mat-option *ngFor= "let l of linea" [value]= "l.linea_plan_id">
+            {{l.nombre}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+      
+      <mat-form-field appearance = "fill" *ngIf = "linea_id != null" class="competencia">
+        <mat-label>Competencias</mat-label>
+        <mat-select [(value)] = "instrumento.cl_id" (selectionChange) = "onChangeCl($event.value)">
+          <mat-option *ngFor= "let competencia of competencias"  [value]= "competencia.cl_id" >
+            {{competencia.competencia}}
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+
+
+      <a  *ngIf = "linea_id != null &&  cl_id !=null && semestre_id!=null" 
+      class="btn-floating btn-large waves-effect waves-lightred red darken-4 pulse" (click)= "openDialog()" >
+      <mat-icon style="padding-top: 15px;">add</mat-icon>
+      </a>
+
+      <ng-template #callDialog>
+        <form  [formGroup]="instrumentoFormGroup" #instrumentoForm="ngForm" (ngSubmit)= "onSend(instrumentoForm)">
+            <h2 mat-dialog-title>Crea tu formulario</h2>
+
+              <input type="text" [value]="instrumento.instrumento_id" class="nopofavor">
+
+
+              <input matInput type="text"  formControlName="cl_id"  [(ngModel)]="instrumento.cl_id" class="nopofavor">
+              <input type="text"  formControlName="nada" [(ngModel)]="selectedL"  class="nopofavor">
+
+              <mat-form-field appearance="outline" style="width: 250px;">
+                <mat-label>Titulo</mat-label>
+                <input matInput type="text"  placeholder="Titulo" formControlName="titulo" [(ngModel)]="instrumento.titulo" required>
+                <mat-error *ngIf="isValidField('titulo',instrumentoForm)">{{getErrorMessage("titulo")}}</mat-error>
+              </mat-form-field>
+
+              <br>
+
+
+              <mat-form-field appearance="outline" style="width: 600px;">
+                <mat-label>Descripción</mat-label>
+                <input matInput type="text"  placeholder="Descripción"  formControlName="descripcion" [(ngModel)]="instrumento.descripcion" required>
+                <mat-error *ngIf="isValidField('descripcion', instrumentoForm)">{{getErrorMessage("descripcion")}}</mat-error>
+              </mat-form-field>
+             
+             <br>
+
+              <mat-form-field>
+                <mat-label>Ciclo</mat-label>
+                <mat-select formControlName="utils_id" [(ngModel)]="instrumento.utils_id">
+                <mat-option *ngFor = "let ciclo of ciclos" [value]= "ciclo.utils_id">
+                  {{ciclo.utils_ciclo}}
+                </mat-option>
+              </mat-select>
+              </mat-form-field>
+              <!--input matInput type="text" name="utils_id" #utils_id [(ngModel)] = "instrumento.utils_id" class="nopofavor"-->
+
+              <mat-dialog-actions >
+                <button mat-button matDialogClose="no" (click) ="resetAll(instrumentoForm)">Cancel</button>
+                <button type="submit" mat-button>Enviar</button>
+            </mat-dialog-actions>
+
+        </form> 
+
+      </ng-template>
+
+      <div>
+
+        <div class="card" *ngFor = "let instrumento of instrumentos">
+          <div class="card-content">
+
+            <div class="row form">
+              <div class="col m9 s12">
+                <div class="row title-box">
+                  <div class="col m8 s12">
+                    <h3 class="title"> {{instrumento.titulo}} </h3>
+                  </div>
+
+                  <div class="col m4 s12">
+                    <div class="row  valign-wrapper">
+                   
+                      <div class="col m6">
+                        <a style="cursor: pointer;" class="red-text text-darken-4" (click)="deleteInstrumento(instrumento.instrumento_id)">
+                         <mat-icon>delete</mat-icon>
+                        </a>
+                      </div>
+
+                      
+                    </div>
+                  </div>
+                    
+                      <!--div class="col s6">
+                        <app-active [form]="form"></app-active>
+                      </div-->
+
+
+                   
+                  
+
+                </div>
+
+                <div class="row">
+                  <div class="col m12">
+                    <p class="description grey-text"> {{instrumento.descripcion}} </p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col m3 s12 center">
+                <div class="col m12 s6">
+                  <div class="row">
+                    <a class="btn amber darken-4" (click)= " getInstrumento(instrumento.instrumento_id) ; openDialog()" >Editar</a>
+                  </div>
+                </div>
+
+                <div class="col m12 s6">
+                  <div class="row">
+                    <a class="btn grey darken-4" [routerLink] = "['/instrumento',instrumento.instrumento_id]">Preguntas</a>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!--div class="card">
+          <div class="card-content">
+
+            <div class="row form">
+              <div class="col m9 s12">
+                <div class="row title-box">
+                  <div class="col m8 s12">
+                    <h5 class="title"> titulo </h5>
+                  </div>
+
+                  <div class="col m4 s12">
+                    <div class="row  valign-wrapper">
+                      <div class="col s6">
+                        <app-active [form]="form"></app-active>
+                      </div>
+
+                      <div class="col m6">
+                        <a href="#" class="grey-text">
+                          eliminar
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col m12">
+                    <p class="description grey-text"> Descripcion</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col m3 s12 center">
+                <div class="col m12 s6">
+                  <div class="row">
+                    <a class="btn light-green">Edit</a>
+                  </div>
+                </div>
+
+                <div class="col m12 s6">
+                  <div class="row">
+                    <a class="btn blue center">Answers</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div -->
+
+
+      
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
