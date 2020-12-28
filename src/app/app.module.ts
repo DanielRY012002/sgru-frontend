@@ -17,6 +17,13 @@ import { LoginComponent } from './components/templates/login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from './components/templates/dashboard/dashboard.component';
 import { HomeComponent } from './components/templates/home/home.component';
+import { AddPlanComponent } from './components/plan/add-plan/add-plan.component';
+import { UpdatePlanComponent } from './components/plan/update-plan/update-plan.component';
+import { AddPlancursoComponent } from './components/plancurso/add-plancurso/add-plancurso.component';
+import { UpdatePlancursoComponent } from './components/plancurso/update-plancurso/update-plancurso.component';
+import { AddCursoComponent } from './components/curso/add-curso/add-curso.component';
+import { UpdateCursoComponent } from './components/curso/update-curso/update-curso.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -35,10 +42,12 @@ import { HomeComponent } from './components/templates/home/home.component';
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
+    MatDialogModule,
     HttpClientModule,
     FlexLayoutModule,
     ToastrModule.forRoot()
     ],
+    entryComponents:[AddPlanComponent, UpdatePlanComponent, AddPlancursoComponent, UpdatePlancursoComponent, AddCursoComponent, UpdateCursoComponent],
   providers: [RolService,AuthService],
   bootstrap: [AppComponent]
 })
