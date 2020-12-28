@@ -6,6 +6,9 @@ import { ListEvaluadorComponent } from "../../evaluador/list-evaluador/list-eval
 import { ListinformesComponent } from "../../informes/listinformes/listinformes.component";
 import { ListInstrumentoComponent } from "../../instrumento/list-instrumento/list-instrumento.component";
 import { HomeComponent } from "../home/home.component";
+import { ListarCursoComponent } from '../../curso/listar-curso/listar-curso.component';
+import { ListarPlanComponent } from '../../plan/listar-plan/listar-plan.component';
+import { ListarPlancursoComponent } from '../../plancurso/listar-plancurso/listar-plancurso.component';
 
 export const routes: Routes = [
   { path: 'listinforme', component: ListinformesComponent, data: { role: ['ADMIN'], id: 3 } },
@@ -13,7 +16,10 @@ export const routes: Routes = [
   { path: 'listevaluador', component: ListEvaluadorComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
   { path: 'evaluacion', component: HomeComponent },
   { path: 'informes', component: HomeComponent },
-  { path: 'rubricas', component: HomeComponent }
+  { path: 'rubricas', component: HomeComponent },
+  { path: 'listar-curso', component: ListarCursoComponent },
+  { path: 'listar-plan', component: ListarPlanComponent },
+  { path: 'listar-plancurso', component: ListarPlancursoComponent }
 
 ];
 
