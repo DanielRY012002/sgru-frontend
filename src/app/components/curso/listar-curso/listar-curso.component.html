@@ -1,0 +1,60 @@
+<div class="example-button-container, center">
+    <button mat-mini-fab class="agregar" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-raised-button class="list" [routerLink]="['/listar-plancurso']">
+        <a style="color: white;">Asignar Curso al Plan<mat-icon>touch_app</mat-icon></a>
+    </button>
+</div>
+<mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese dato" #input>
+  </mat-form-field>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="cursos">
+        <ng-container matColumnDef="N">
+            <th mat-header-cell *matHeaderCellDef> N° </th>
+            <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="NOMBRE">
+            <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+            <td mat-cell *matCellDef="let curso"> {{curso.NOMBRE}} </td>
+        </ng-container>
+        <ng-container matColumnDef="CR">
+            <th mat-header-cell *matHeaderCellDef> CR </th>
+            <td mat-cell *matCellDef="let curso"> {{curso.CR}} </td>
+        </ng-container>
+        <ng-container matColumnDef="HT">
+            <th mat-header-cell *matHeaderCellDef> HT </th>
+            <td mat-cell *matCellDef="let curso"> {{curso.HT}} </td>
+        </ng-container>
+        <ng-container matColumnDef="HP">
+            <th mat-header-cell *matHeaderCellDef> HP </th>
+            <td mat-cell *matCellDef="let curso"> {{curso.HP}} </td>
+        </ng-container>
+        <ng-container matColumnDef="EDITAR">
+            <th mat-header-cell *matHeaderCellDef>EDITAR</th>
+            <td mat-cell *matCellDef="let curso">
+                <a mat-icon-button (click)="openDialogo(curso.CURSO_ID)">
+                    <mat-icon color="primary">edit</mat-icon>
+                </a>
+            </td> <button type="button" class="btn btn-outline-primary"></button>
+        </ng-container>
+        <ng-container matColumnDef="ELIMINAR">
+            <th mat-header-cell *matHeaderCellDef>ELIMINAR</th>
+            <td mat-cell *matCellDef="let curso">
+                <button (click)="delCurso(curso.CURSO_ID)" mat-icon-button>
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row
+            *matHeaderRowDef="['N', 'NOMBRE', 'CR', 'HT', 'HP', 'EDITAR', 'ELIMINAR']">
+        </tr>
+        <tr mat-row
+            *matRowDef="let fila; columns: ['N', 'NOMBRE', 'CR', 'HT', 'HP', 'EDITAR', 'ELIMINAR'];">
+        </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[6, 8, 10]" showFirstLastButtons></mat-paginator>
+</div>

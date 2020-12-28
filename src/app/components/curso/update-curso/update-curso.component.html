@@ -1,0 +1,32 @@
+<mat-card class="example-card" style="text-align: center;">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Modificar</mat-card-title>
+        <mat-card-subtitle>Curso</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="curso.nombre" placeholder="Nuevo Nombre">
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Creditos</mat-label>
+            <input matInput [(ngModel)]="curso.cr" placeholder="Nuevo N° de Creditos">
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Horas Teoricas</mat-label>
+            <input matInput [(ngModel)]="curso.ht" placeholder="Nuevas Horas Teoricas">
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Horas Practicas</mat-label>
+            <input matInput [(ngModel)]="curso.hp" placeholder="Nuevas Horas Practicas">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="modificarCurso()">Modificar</button>
+        <a mat-raised-button mat-dialog-close color="warn">Cancelar</a>
+    </mat-card-actions>
+</mat-card>

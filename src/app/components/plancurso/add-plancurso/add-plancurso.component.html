@@ -1,0 +1,61 @@
+<mat-card class="example-card" style="text-align: center;">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Asignar</mat-card-title>
+        <mat-card-subtitle>Plan - Curso</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Campus</mat-label>
+            <mat-select (selectionChange)="getfacultades($event.value)" [formControl]="control" required>
+                <mat-option *ngFor="let e of campus" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control.hasError('required')">Es necesario elegir un campus</mat-error>
+            <mat-hint>{{control.value?.listCampus}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field *ngIf="fac" appearance="outline">
+            <mat-label>Facultad</mat-label>
+            <mat-select (selectionChange)="getprogramas($event.value)" [formControl]="control1" required>
+                <mat-option *ngFor="let e of facultades" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control1.hasError('required')">Es necesario elegir una facultad</mat-error>
+            <mat-hint>{{control1.value?.getfacultades}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field *ngIf="prog" appearance="outline">
+            <mat-label>Programa Academico</mat-label>
+            <mat-select (selectionChange)="getplanes($event.value)" [formControl]="control2" required>
+                <mat-option *ngFor="let e of programas" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control2.hasError('required')">Es necesario elegir un programa</mat-error>
+            <mat-hint>{{control2.value?.getprogramas}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field *ngIf="pla" appearance="outline">
+            <mat-label>Planes</mat-label>
+            <mat-select [(ngModel)]="plancursoModel.plan_id" [formControl]="control3" required>
+                <mat-option *ngFor="let e of planes2" [value]="e.ID">{{ e.PLAN }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control3.hasError('required')">Es necesario elegir un plan</mat-error>
+            <mat-hint>{{control3.value?.getplanes}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ciclos</mat-label>
+            <mat-select [(ngModel)]="plancursoModel.utils_id" [formControl]="control4" required>
+                <mat-option *ngFor="let e of ciclos" [value]="e.UTILS_ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control3.hasError('required')">Es necesario elegir un ciclo</mat-error>
+            <mat-hint>{{control3.value?.getplanes}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cursos</mat-label>
+            <mat-select [(ngModel)]="plancursoModel.curso_id" [formControl]="control5" required>
+                <mat-option *ngFor="let e of cursos" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control3.hasError('required')">Es necesario elegir un curso</mat-error>
+            <mat-hint>{{control3.value?.getplanes}}</mat-hint>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="create()">Asignar</button>
+        <a mat-raised-button mat-dialog-close color="warn">Cancelar</a>
+    </mat-card-actions>
+</mat-card>
