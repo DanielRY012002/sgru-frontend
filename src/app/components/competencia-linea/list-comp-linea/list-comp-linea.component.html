@@ -1,0 +1,55 @@
+<div style="max-width: 100%; margin-top: 50px;">
+    <button mat-raised-button routerLink="/competencias">Volver 
+        <mat-icon class="add" color="accent">arrow_back</mat-icon>
+    </button>
+    <button mat-raised-button (click)="openDialog()">ASIGNAR
+        <mat-icon class="add" color="accent">add_circle</mat-icon>
+    </button>
+
+    <br>
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese dato" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="competenciaslinea" class="mat-elevation-z8">
+            <ng-container matColumnDef="N">
+                <th mat-header-cell *matHeaderCellDef>N°</th>
+                <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="COMPETENCIA">
+                <th mat-header-cell *matHeaderCellDef>COMPETENCIA</th>
+                <td mat-cell *matCellDef="let competenciaslinea"> {{competenciaslinea.COMPETENCIA}}</td>
+            </ng-container>
+            <ng-container matColumnDef="LINEA_PA">
+                <th mat-header-cell *matHeaderCellDef>LINEA_PA</th>
+                <td mat-cell *matCellDef="let competenciaslinea"> {{competenciaslinea.LINEA_PA}} </td>
+            </ng-container>
+            <ng-container matColumnDef="PLAN">
+                <th mat-header-cell *matHeaderCellDef>PLAN</th>
+                <td mat-cell *matCellDef="let competenciaslinea"> {{competenciaslinea.PLAN}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="EDITAR">
+                <th mat-header-cell *matHeaderCellDef>EDITAR</th>
+                <td mat-cell *matCellDef="let competenciaslinea">
+                    <a mat-icon-button (click)="openDialogg(competenciaslinea.ID)">
+                        <mat-icon color="primary">edit</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="ELIMINAR">
+                <th mat-header-cell *matHeaderCellDef>ELIMINAR</th>
+                <td mat-cell *matCellDef="let competenciaslinea">
+                    <button (click)="delComplinea(competenciaslinea.ID)" mat-icon-button>
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['N', 'COMPETENCIA', 'LINEA_PA', 'PLAN', 'EDITAR', 'ELIMINAR']"></tr>
+            <tr mat-row *matRowDef="let fila; columns: ['N','COMPETENCIA', 'LINEA_PA', 'PLAN', 'EDITAR', 'ELIMINAR'];"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

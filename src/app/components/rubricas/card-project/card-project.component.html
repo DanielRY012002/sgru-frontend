@@ -1,0 +1,15 @@
+<mat-card style="margin: 1.65rem;">
+
+    <a mat-list-item [routerLink]="['/addrubricas', proyecto.py_id]">Registrar Rúbrica</a>
+    <p>{{proyecto.lider}}</p>
+    <p>{{proyecto.ciclo}}</p>
+    <button mat-raised-button (click)="confirmStateToggleCurso()" [disabled]="loader">
+        <i *ngIf="loader" class="fas fa-spinner fa-spin mr-2"></i>Ver Cursos del Proyecto</button>
+
+    <div *ngIf="toggleCursos">
+        <ul *ngFor="let curso of cursos">
+            <li>{{curso.curso}}</li>
+        </ul>
+    </div>
+
+</mat-card>

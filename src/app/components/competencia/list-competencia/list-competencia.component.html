@@ -1,0 +1,55 @@
+<div class="container" style="max-width: 100%; margin-top: 90px;">
+    <button mat-raised-button (click)="openDialog()">REGISTRAR COMPETENCIA
+        <mat-icon class="add" color="accent">add_circle</mat-icon>
+    </button>
+
+    <button mat-raised-button routerLink="/lis-comp-linea">ASIGNAR COMPETENCIA A LINEA
+        <mat-icon class="add" color="accent">add_circle</mat-icon>
+    </button>
+    <br>
+    <mat-form-field>
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese dato" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="competencias" class="mat-elevation-z8">
+            <ng-container matColumnDef="N">
+                <th mat-header-cell *matHeaderCellDef>N°</th>
+                <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="TIPO_COMPETENCIAS_ID">
+                <th mat-header-cell *matHeaderCellDef>TIPO COMPETENCIAS</th>
+                <td mat-cell *matCellDef="let competencia"> {{competencia.TIPO_COMPETENCIA}}</td>
+            </ng-container>
+            <ng-container matColumnDef="NOMBRE">
+                <th mat-header-cell *matHeaderCellDef>COMPETENCIAS</th>
+                <td mat-cell *matCellDef="let competencia"> {{competencia.COMPETENCIA}} </td>
+            </ng-container>
+            <ng-container matColumnDef="DESCRIPCION">
+                <th mat-header-cell *matHeaderCellDef style="width:25rem; text-align: center;">DESCRIPCION</th>
+                <td mat-cell *matCellDef="let competencia"> {{competencia.DESCRIPCION}} </td>
+            </ng-container>
+            <ng-container matColumnDef="EDITAR">
+                <th mat-header-cell *matHeaderCellDef>EDITAR</th>
+                <td mat-cell *matCellDef="let competencia">
+                    <a mat-icon-button (click)="openDialogg(competencia.COMPETENCIAS_ID)">
+                        <mat-icon color="primary">edit</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="ELIMINAR">
+                <th mat-header-cell *matHeaderCellDef>ELIMINAR</th>
+                <td mat-cell *matCellDef="let competencia">
+                    <button (click)="delCompetencia(competencia.COMPETENCIAS_ID)" mat-icon-button>
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['N', 'TIPO_COMPETENCIAS_ID', 'NOMBRE', 'DESCRIPCION','EDITAR', 'ELIMINAR']"></tr>
+            <tr mat-row *matRowDef="let fila; columns: ['N','TIPO_COMPETENCIAS_ID', 'NOMBRE','DESCRIPCION', 'EDITAR', 'ELIMINAR'];"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[3, 6, 9]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

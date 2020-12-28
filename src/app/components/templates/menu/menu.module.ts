@@ -24,12 +24,21 @@ import { AlternativaInstrumentoComponent } from '../../instrumento/alternativa-i
 import { DetailInstrumentoComponent } from '../../instrumento/detail-instrumento/detail-instrumento.component';
 import { PreguntaInstrumentoComponent } from '../../instrumento/pregunta-instrumento/pregunta-instrumento.component';
 import { ResultadosComponent } from '../../resultados/resultados.component';
-
-
+import {  ListCompetenciaComponent } from '../../competencia/list-competencia/list-competencia.component';
+import {  AddCompetenciaComponent } from '../../competencia/add-competencia/add-competencia.component';
+import { UpdateCompetenciaComponent  } from '../../competencia/update-competencia/update-competencia.component';
+import {ListCompLineaComponent} from '../../competencia-linea/list-comp-linea/list-comp-linea.component';
+import {AddCompLineaComponent} from '../../competencia-linea/add-comp-linea/add-comp-linea.component';
+import {UpdateCompLineaComponent} from '../../competencia-linea/update-comp-linea/update-comp-linea.component';
+import {RubricasComponent} from '../../rubricas/rubricas.component';
+import {AddRubricasComponent} from '../../rubricas/add-rubricas/add-rubricas.component';
+import {CardProjectComponent} from '../../rubricas/card-project/card-project.component';
+import {VistaAdministrativaComponent} from '../../rubricas/vista-administrativa/vista-administrativa.component';
+import {CriteriosComponent} from '../../rubricas/criterios/criterios.component';
+import {NivelesLogroComponent} from '../../rubricas/niveles-logro/niveles-logro.component';
+import  {RegistroRubricaComponent} from '../../rubricas/registro-rubrica/registro-rubrica.component';
 import { InterceptorErrorService } from '../../../services/login/interceptores/interceptor-error.service';
 import { InterceptorService } from '../../../services/login/interceptores/interceptor.service';
-
-
 
 @NgModule({
   declarations: [
@@ -46,7 +55,20 @@ import { InterceptorService } from '../../../services/login/interceptores/interc
     AlternativaInstrumentoComponent,
     DetailInstrumentoComponent,
     PreguntaInstrumentoComponent,
-    ResultadosComponent
+    ResultadosComponent,
+    AddCompetenciaComponent,
+    UpdateCompetenciaComponent,
+    ListCompetenciaComponent,
+    ListCompLineaComponent,
+    AddCompLineaComponent,
+    UpdateCompLineaComponent,
+    RubricasComponent,
+    CardProjectComponent,
+    AddRubricasComponent,
+    CriteriosComponent,
+    NivelesLogroComponent,
+    VistaAdministrativaComponent,
+    RegistroRubricaComponent
 
   ],
   imports: [

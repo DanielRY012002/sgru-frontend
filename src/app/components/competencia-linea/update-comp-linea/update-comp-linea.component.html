@@ -1,0 +1,27 @@
+<div class="center">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Actualizar</mat-card-title>
+            <mat-card-subtitle>Asignación de Competencias</mat-card-subtitle>
+        </mat-card-header>
+        <mat-form-field appearance="fill">
+            <mat-label>Selecciona Linea PA</mat-label>
+            <mat-select [(ngModel)]="complinea.linea_plan_id">
+                <mat-option *ngFor="let l of lineapa" [value]="l.LINEAS_PA_ID">{{l.NOMBRE}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Selecciona Competencias</mat-label>
+            <mat-select [(ngModel)]="complinea.competencias_id">
+                <mat-option *ngFor="let e of competencia_linea" [value]="e.COMPETENCIAS_ID">{{e.COMPETENCIA}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-card-actions>
+            <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="modificarComplinea()">Actualizar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

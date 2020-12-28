@@ -1,0 +1,35 @@
+<div class="center">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>Modificar</mat-card-title>
+            <mat-card-subtitle>Competencias</mat-card-subtitle>
+        </mat-card-header>
+        <mat-dialog-content>
+            <mat-form-field appearance="fill">
+                <mat-label>Selecciona Tipo</mat-label>
+                <mat-select [(ngModel)]="competencia.tipo_competencias_id">
+                    <mat-option *ngFor="let e of tipocompetencia" [value]="e.TIPO_COMPETENCIAS_ID">{{e.NOMBRE}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Competencias</mat-label>
+                <input matInput [(ngModel)]="competencia.nombre" placeholder="Nuevo Nombre">
+                <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Descripcion</mat-label>
+                <input matInput [(ngModel)]="competencia.descripcion" placeholder="Nueva Descripcion">
+                <mat-icon matSuffix></mat-icon>
+            </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="modificarCompetencia()">Modificar</button>
+        </mat-dialog-actions>
+    </mat-card>
+</div>

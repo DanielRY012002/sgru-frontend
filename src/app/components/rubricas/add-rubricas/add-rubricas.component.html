@@ -1,0 +1,52 @@
+<div style="max-width: 100%; margin-top: 5 rem;">
+
+    <button mat-raised-button (click)="openDialog()">REGISTRAR RUBRICA
+        <mat-icon class="add" color="accent">add_circle</mat-icon>
+    </button>
+    <button mat-raised-button>VALIDACION DE RUBRICAS
+        <mat-icon class="add" color="accent">done</mat-icon>
+    </button>
+    <div class="center">
+        <table mat-table [dataSource]="Rubrica.rubrica" class="mat-elevation-z8">
+            <ng-container matColumnDef="N">
+                <th mat-header-cell *matHeaderCellDef>N°</th>
+                <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+            </ng-container>
+            <ng-container matColumnDef="CURSO">
+                <th mat-header-cell *matHeaderCellDef style="text-align: inherit;">CURSO</th>
+                <td mat-cell *matCellDef="let rubrica"> {{rubrica.curso}}</td>
+            </ng-container>
+            <ng-container matColumnDef="PESO">
+                <th mat-header-cell *matHeaderCellDef>PESO</th>
+                <td mat-cell *matCellDef="let rubrica"> {{rubrica.peso}}% </td>
+            </ng-container>
+            <ng-container matColumnDef="REGISTRAR_CRITERIOS">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">REGISTRAR CRITERIOS</th>
+                <td mat-cell *matCellDef="let rubrica" style="text-align: center;">
+                    <a mat-icon-button (click)="recriterios(rubrica.rubrica_id)">
+                        <mat-icon style=color:olivedrab>note_add</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="VISTA_ADMINISTRATIVA">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;">VISTA ADMINISTRATIVA</th>
+                <td mat-cell *matCellDef="let rubrica" style="text-align: center;">
+                    <a mat-icon-button [routerLink]="['/rubricas/vista/admin', rubrica.py_id, rubrica.py_carga_id]">
+                        <mat-icon style=color:darkmagenta>visibility</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="ELIMINAR">
+                <th mat-header-cell *matHeaderCellDef>ELIMINAR</th>
+                <td mat-cell *matCellDef="let rubrica">
+                    <button (click)="delrubrica(rubrica.rubrica_id)" mat-icon-button>
+                    <mat-icon style=color:crimson>delete</mat-icon>
+                  </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['N', 'CURSO', 'PESO', 'REGISTRAR_CRITERIOS','VISTA_ADMINISTRATIVA', 'ELIMINAR']"></tr>
+            <tr mat-row *matRowDef="let fila; columns: ['N','CURSO', 'PESO','REGISTRAR_CRITERIOS', 'VISTA_ADMINISTRATIVA', 'ELIMINAR'];"></tr>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<mat-form-field appearance="fill">
+
+    <mat-label>Semestre</mat-label>
+    <mat-select (selectionChange)="getProyectos($event.value)">
+        <mat-option *ngFor="let semestre of Rubrica.semestre" [value]="semestre.semestre_id">
+            {{semestre.nombre}}
+        </mat-option>
+
+    </mat-select>
+</mat-form-field>
+
+<div>
+    <div *ngFor="let proyecto of proyectos">
+        <app-card-project [proyecto]="proyecto"></app-card-project>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Registrar</mat-card-title>
+        <mat-card-subtitle>Rúbricas</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Seleccione Curso</mat-label>
+        <mat-select name="py_carga_id" [(ngModel)]="rubricaModel.py_carga_id" [formControl]="control" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let c of curso" [value]="c.py_carga_id">{{c.curso}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="control.hasError('required')">Porfavor seleccione curso</mat-error>
+        <mat-hint>{{control.value?.list_lineapa}}</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Peso</mat-label>
+        <input matInput [(ngModel)]="rubricaModel.peso" placeholder="Ingresar Peso">
+    </mat-form-field>
+
+    <mat-card-actions>
+        <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="addRubrica()">Registrar</button>
+    </mat-card-actions>
+</mat-card>

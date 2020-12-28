@@ -1,0 +1,65 @@
+<mat-card>
+
+
+    <mat-card style="width: 18rem; margin-top: 1rem;">
+
+        <mat-label for="inputState">
+            <b> Información del Criterio</b>
+        </mat-label>
+        <div *ngFor="let criterio of infoCriterio">
+            <p> Criterio: {{ criterio.nombre }}</p>
+            <a> Peso: {{ criterio.peso }} %</a>
+        </div>
+    </mat-card>
+
+
+    <!--<form>
+    <label for="inputState">Seleccione Nivel</label>
+    <select class="form-control" id="inputState" class="form-control" id="inputState" class="form-control">
+    <option selected>Elegir...</option>
+
+     <option *ngFor="let nivel of Rubrica.niveles" [value] = "nivel">  {{nivel.nombre }} {{nivel.peso}} </option>
+    
+    </select>
+    <button mat-raised-button> Guardar </button>
+</form>-->
+
+
+    <div style="width: 38rem; margin-top: 1rem;">
+        <div class="center">
+            <table mat-table [dataSource]="Rubrica.niveles" class="mat-elevation-z8">
+                <ng-container matColumnDef="N">
+                    <th mat-header-cell *matHeaderCellDef>N°</th>
+                    <td mat-cell *matCellDef="let i=index"> {{i+1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="NIVEL">
+                    <th mat-header-cell *matHeaderCellDef>NIVEL</th>
+                    <td mat-cell *matCellDef="let nivel"> {{nivel.nombre}}</td>
+                </ng-container>
+                <ng-container matColumnDef="PESO">
+                    <th mat-header-cell *matHeaderCellDef>PESO</th>
+                    <td mat-cell *matCellDef="let nivel"> {{nivel.peso}}% </td>
+                </ng-container>
+                <ng-container matColumnDef="DESCRIPCION">
+                    <th mat-header-cell *matHeaderCellDef>DESCRIPCION</th>
+                    <td mat-cell *matCellDef="let nivel"> {{nivel.descripcion}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ACCION">
+                    <th mat-header-cell *matHeaderCellDef>ACCION</th>
+                    <td mat-cell *matCellDef="let rubrica">
+                        <button mat-icon-button>
+                    <mat-icon style=color:crimson>delete</mat-icon>
+                  </button>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="['N', 'NIVEL', 'PESO', 'DESCRIPCION', 'ACCION']"></tr>
+                <tr mat-row *matRowDef="let fila; columns: ['N','NIVEL', 'PESO', 'DESCRIPCION', 'ACCION'];"></tr>
+            </table>
+        </div>
+    </div>
+    <mat-card-actions>
+        <button mat-raised-button mat-dialog-close color="warn">Salir</button>
+
+    </mat-card-actions>
+</mat-card>

@@ -1,4 +1,4 @@
- var urlOrigin:string="http://localhost:9090";
+ var urlOrigin:string="https://proyecto-sisgeep.herokuapp.com";
 
 export var Global = {
     url : `${urlOrigin}/api/`,

@@ -1,0 +1,38 @@
+<div class="center">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Asignar</mat-card-title>
+            <mat-card-subtitle>Competencia a Linea PA</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Selecciona Plan</mat-label>
+            <mat-select (selectionChange)="cambio()">
+                <mat-option *ngFor="let p of plan" [value]="p.PLAN_ID">{{p.NOMBRE}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="chom" appearance="fill">
+            <mat-label>Selecciona Linea PA</mat-label>
+            <mat-select [(ngModel)]="competencialineaModel.linea_plan_id">
+                <mat-option *ngFor="let l of lineapa" [value]="l.LINEAS_PA_ID">{{l.NOMBRE}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Selecciona Competencias</mat-label>
+            <mat-select [(ngModel)]="competencialineaModel.competencias_id">
+                <mat-option *ngFor="let e of competencia_linea" [value]="e.COMPETENCIAS_ID">{{e.COMPETENCIA}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-card-actions>
+            <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+            <button mat-raised-button color="primary" (click)="create()">Asignar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
