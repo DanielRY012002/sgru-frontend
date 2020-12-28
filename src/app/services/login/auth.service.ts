@@ -12,7 +12,7 @@ import { Global } from '../global';
 export class AuthService {
   private _usuario: Usuario;
   private _token: string;
-  constructor(private http: HttpClient, private tost: ToastrService,private route:Router) { }
+  constructor(private http: HttpClient, private tost: ToastrService, private route: Router) { }
   public get usuario(): Usuario {
     if (this._usuario != null) {
       return this._usuario;
@@ -55,7 +55,6 @@ export class AuthService {
     this._usuario.username = payload.user;
     this._usuario.nombres = payload.nombre;
     this._usuario.apellidos = payload.apellidos;
-
     this._usuario.roles = payload.authorities;
     this._usuario.accesos = payload.accesos;
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));

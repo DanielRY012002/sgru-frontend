@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "sysgru",
+    "public": "dist/sgru-frontend-lp2-g2",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

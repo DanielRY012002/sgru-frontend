@@ -18,9 +18,6 @@ import { RolService } from 'src/app/services/login/roles/rol.service';
 import { ListinformesComponent } from '../../informes/listinformes/listinformes.component';
 import { InformesiComponent } from '../../informes/informesi/informesi.component';
 import { InformesgComponent } from '../../informes/informesg/informesg.component';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
-
-
 
 @NgModule({
   declarations: [
@@ -32,7 +29,6 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
     ListExternosComponent,
     ListDocentesComponent,
     ListinformesComponent,
-    DashboardComponent,
     InformesiComponent,
     InformesgComponent
   ],

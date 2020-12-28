@@ -11,9 +11,9 @@ export const routes: Routes = [
   { path: 'listinforme', component: ListinformesComponent, data: { role: ['ADMIN'], id: 3 } },
   { path: 'instrumento', component: ListInstrumentoComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
   { path: 'listevaluador', component: ListEvaluadorComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
-  { path: 'evaluacion', component: HomeComponent },
-  { path: 'informes', component: HomeComponent },
-  { path: 'rubricas', component: HomeComponent }
+  { path: 'evaluacion', component: HomeComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
+  { path: 'informes', component: HomeComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
+  { path: 'rubricas', component: HomeComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } }
 
 ];
 
