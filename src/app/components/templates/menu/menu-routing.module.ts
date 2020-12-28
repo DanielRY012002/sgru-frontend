@@ -17,7 +17,6 @@ export const routes: Routes = [
   { path: 'evaluacion', component: HomeComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
   { path: 'informes', component: HomeComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
   { path: 'rubricas', component: HomeComponent, canActivate: [AuthRutasGuard, RoleGuard], data: { role: ['ADMIN'] } },
-
   { path: 'listar-curso', component: ListarCursoComponent },
   { path: 'listar-plan', component: ListarPlanComponent },
   { path: 'listar-plancurso', component: ListarPlancursoComponent }

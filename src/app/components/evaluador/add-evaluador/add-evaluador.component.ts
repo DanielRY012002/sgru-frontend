@@ -98,6 +98,9 @@ export class AddEvaluadorComponent implements OnInit {
   getEvaluador(): void {
     this.evaluador = this.listEvaluadorComponent.evaluadorModel;
   }
+  update():void{
+    
+  }
 
 
 
