@@ -1,0 +1,26 @@
+<mat-card class="example-card" style="text-align: center;">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Modificar</mat-card-title>
+        <mat-card-subtitle>Plan</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="plan.nombre" placeholder="Nuevo Nombre">
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>F_Inicio</mat-label>
+            <input matInput type='date' [(ngModel)]="plan.f_ini" placeholder="Nueva Fecha de Inicio"> 
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>F_Fin</mat-label>
+            <input matInput type='date' [(ngModel)]="plan.f_fin" placeholder="Nueva Fecha de Fin">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="modificarPlan()">Modificar</button>
+        <a mat-raised-button mat-dialog-close color="warn">Cancelar</a>
+    </mat-card-actions>
+</mat-card>

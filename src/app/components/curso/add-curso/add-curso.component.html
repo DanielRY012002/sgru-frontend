@@ -1,0 +1,41 @@
+<mat-card class="example-card" style="text-align: center;">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Registrar</mat-card-title>
+      <mat-card-subtitle>Cursos</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="cursoModel.nombre" placeholder="Ingresar Nombre" name="nombre" required
+        name="title" ngModel #error1="ngModel">
+    <mat-error *ngIf="error1.invalid">Es necesario ingresar un nombre</mat-error>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Creditos</mat-label>
+        <input matInput [(ngModel)]="cursoModel.cr" placeholder="Creditos" name="cr" required
+        name="title" ngModel #error1="ngModel">
+    <mat-error *ngIf="error1.invalid">Es necesario ingresar los creditos</mat-error>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>H-Teoricas</mat-label>
+        <input matInput [(ngModel)]="cursoModel.ht" placeholder="Horas Teoricas" name="ht" required
+        name="title" ngModel #error1="ngModel">
+    <mat-error *ngIf="error1.invalid">Es necesario ingresar las H-Teoricas</mat-error>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>H-Practicas</mat-label>
+        <input matInput [(ngModel)]="cursoModel.hp" placeholder="Horas Practicas" name="hp" required
+        name="title" ngModel #error1="ngModel">
+    <mat-error *ngIf="error1.invalid">Es necesario ingresar las H-Practicas</mat-error>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="create()">Registrar</button>
+      <a mat-raised-button mat-dialog-close color="warn">Cancelar</a>
+    </mat-card-actions>
+  </mat-card>

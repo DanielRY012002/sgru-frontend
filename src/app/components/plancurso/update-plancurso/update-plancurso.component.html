@@ -1,0 +1,31 @@
+<mat-card class="example-card" style="text-align: center;">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Reasignar</mat-card-title>
+        <mat-card-subtitle>Plan - Curso</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Planes</mat-label>
+            <mat-select [(ngModel)]="plancurso.plan_id">
+                <mat-option *ngFor="let e of planes" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ciclos</mat-label>
+            <mat-select [(ngModel)]="plancurso.utils_id">
+                <mat-option *ngFor="let e of ciclos" [value]="e.UTILS_ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cursos</mat-label>
+            <mat-select [(ngModel)]="plancurso.curso_id">
+                <mat-option *ngFor="let e of cursos" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="modificarPlancurso()">Modificar</button>
+        <a mat-raised-button mat-dialog-close color="warn">Cancelar</a>
+    </mat-card-actions>
+</mat-card>

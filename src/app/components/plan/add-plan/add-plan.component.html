@@ -1,0 +1,59 @@
+<mat-card class="example-card" style="text-align: center;">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Registrar</mat-card-title>
+        <mat-card-subtitle>Planes</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-form-field appearance="outline">
+            <mat-label>Campus</mat-label>
+            <mat-select (selectionChange)="getfacultades($event.value)" [formControl]="control" required>
+                <mat-option *ngFor="let e of campus" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control.hasError('required')">Es necesario elegir un campus</mat-error>
+            <mat-hint>{{control.value?.listCampus}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field *ngIf="fac" appearance="outline">
+            <mat-label>Facultad</mat-label>
+            <mat-select (selectionChange)="getprogramas($event.value)" [formControl]="control1" required>
+                <mat-option *ngFor="let e of facultades" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control1.hasError('required')">Es necesario elegir una facultad</mat-error>
+            <mat-hint>{{control1.value?.getfacultades}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field *ngIf="prog" appearance="outline">
+            <mat-label>Programa Academico</mat-label>
+            <mat-select [(ngModel)]="planModel.ua_id" [formControl]="control2" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let e of programas" [value]="e.ID">{{ e.NOMBRE }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="control2.hasError('required')">Es necesario elegir un programa</mat-error>
+            <mat-hint>{{control2.value?.getprogramas}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="planModel.nombre" placeholder="Ingresar Nombre" name="nombre" required
+                name="title" ngModel #error1="ngModel">
+            <mat-error *ngIf="error1.invalid">Es necesario ingresar un nombre</mat-error>
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha_Inicio</mat-label>
+            <input matInput type="date" [(ngModel)]="planModel.f_ini" placeholder="Fecha de Inicio" name="f_ini"
+                required name="title" ngModel #error2="ngModel">
+            <mat-error *ngIf="error2.invalid">Es necesario ingresar fecha de inicio</mat-error>
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha_Fin</mat-label>
+            <input matInput type="date" [(ngModel)]="planModel.f_fin" placeholder="Fecha de Fin" name="f_fin" required
+                name="title" ngModel #error2="ngModel">
+            <mat-error *ngIf="error2.invalid">Es necesario ingresar una fecha de fin</mat-error>
+            <mat-icon matSuffix></mat-icon>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="create()">Registrar</button>
+        <a mat-raised-button mat-dialog-close color="warn">Cancelar</a>
+    </mat-card-actions>
+</mat-card>
