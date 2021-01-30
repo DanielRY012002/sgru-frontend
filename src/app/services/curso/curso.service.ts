@@ -14,7 +14,7 @@ export class CursoService {
     return this.http.get<Curso[]>(this.cursoUrl+'/all', {headers:this.httpHeaders});
   }
   getCurso(id:number):Observable<Object> {
-    return this.http.get(`${this.cursoUrl}/${id}`);
+    return this.http.get(`${this.cursoUrl}/${id}`,{headers:this.httpHeaders});
   }
   addCurso(curso:Curso): Observable<number>{
     return this.http.post<number>(this.cursoUrl+"/add", curso, {headers:this.httpHeaders});
